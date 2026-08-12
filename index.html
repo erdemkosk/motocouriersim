@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moto Courier Simulator</title>
+<meta name="description" content="">
+<meta property="og:title" content="Moto Courier Simulator">
+<meta property="og:description" content="Şehir senin. Motor senin. Vardiya senin.">
+<meta property="og:image" content="img/hero.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/logo.png">
+<style>
+:root{
+  --bg:#07090b;
+  --panel:#12181f;
+  --line:#212c36;
+  --ink:#eef3f6;
+  --ink-dim:#8fa0ad;
+  --teal:#1fd3ae;
+  --amber:#ffb02e;
+  --cream:#f6efe2;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font:400 17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:var(--teal);text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* ---------------------------------------------------------------- nav --- */
+.nav{
+  position:fixed;inset-inline:0;top:0;z-index:60;
+  display:flex;align-items:center;gap:14px;padding:14px 22px;
+  background:linear-gradient(to bottom,rgba(7,9,11,.85),rgba(7,9,11,0));
+  transition:background .3s ease;
+}
+.nav.solid{background:rgba(7,9,11,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav img{width:40px;height:40px}
+.nav .sp{flex:1}
+.nav .soc-mini{display:flex;gap:6px}
+.nav .soc-mini a{
+  display:flex;align-items:center;justify-content:center;width:38px;height:38px;
+  border-radius:50%;color:var(--ink-dim);transition:color .15s,background .15s;
+}
+.nav .soc-mini a:hover{color:var(--teal);background:rgba(255,255,255,.06)}
+.nav .soc-mini svg{width:19px;height:19px;fill:currentColor}
+#lang-pick{
+  background:rgba(18,24,31,.85);color:var(--ink);border:1px solid var(--line);
+  border-radius:999px;padding:8px 14px;font-size:14px;font-family:inherit;cursor:pointer;
+}
+.nav .btn-wish{padding:9px 20px;font-size:14.5px}
+@media(max-width:640px){.nav .soc-mini{display:none}.nav .btn-wish{display:none}}
+
+/* ------------------------------------------------------------- düğme --- */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:999px;
+  font-weight:800;font-size:17px;border:1px solid transparent;cursor:pointer;
+  white-space:nowrap;
+  transition:transform .15s ease,background .15s ease,box-shadow .15s ease;
+}
+/* İkon boyutu SINIFTAN BAĞIMSIZ: btn-wish -> btn-soon geçişinde svg
+   boyutsuz kalıp düğmeyi yutuyordu. */
+.btn svg{width:20px;height:20px;fill:currentColor;flex:none}
+.btn:hover{text-decoration:none;transform:translateY(-2px)}
+.btn-wish{
+  background:var(--amber);color:#231400;
+  box-shadow:0 6px 30px -6px rgba(255,176,46,.55);
+}
+.btn-wish:hover{background:#ffc258;box-shadow:0 10px 36px -6px rgba(255,176,46,.7)}
+.btn-ghost{border-color:rgba(255,255,255,.28);color:var(--ink);background:rgba(255,255,255,.05);backdrop-filter:blur(4px)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+/* Steam URL'i girilene kadar: tıklanmayan dürüst rozet. */
+.btn-soon{background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.25);color:#c9d4dc;cursor:default;box-shadow:none;font-weight:600}
+.btn-soon:hover{transform:none;background:rgba(255,255,255,.06);box-shadow:none}
+@media(max-width:560px){.btn{font-size:15px;padding:13px 22px}}
+
+/* --------------------------------------------------------------- hero --- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden;padding:110px 24px 90px}
+.hero .bg{position:absolute;inset:0;z-index:-1}
+.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%;transform:scale(1.06);animation:heroDrift 26s ease-in-out infinite alternate}
+@keyframes heroDrift{from{transform:scale(1.06) translateY(0)}to{transform:scale(1.12) translateY(-16px)}}
+.hero .bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at center 42%,rgba(7,9,11,0) 0%,rgba(7,9,11,.5) 68%,rgba(7,9,11,.92) 100%),
+    linear-gradient(to top,var(--bg) 4%,rgba(7,9,11,.2) 40%);
+}
+.hero-logo{width:min(340px,64vw);filter:drop-shadow(0 16px 44px rgba(0,0,0,.7))}
+.hero h1{
+  margin:26px 0 10px;font-size:clamp(30px,5.2vw,54px);line-height:1.1;font-weight:900;
+  letter-spacing:-.02em;color:var(--cream);text-shadow:0 4px 26px rgba(0,0,0,.6);
+}
+.hero h1 em{font-style:normal;color:var(--teal)}
+.hero .cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:26px}
+.hero .socrow{display:flex;gap:10px;margin-top:30px}
+.hero .socrow a{
+  display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;
+  background:rgba(255,255,255,.07);color:var(--ink);border:1px solid rgba(255,255,255,.14);
+  transition:color .15s,border-color .15s,transform .15s;backdrop-filter:blur(4px);
+}
+.hero .socrow a:hover{color:var(--teal);border-color:var(--teal);transform:translateY(-2px)}
+.hero .socrow svg{width:21px;height:21px;fill:currentColor}
+.scrolldown{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+  font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.scrolldown::after{
+  content:"";width:1px;height:34px;background:linear-gradient(to bottom,var(--ink-dim),transparent);
+  animation:drop 1.8s ease-in-out infinite;
+}
+@keyframes drop{0%{transform:scaleY(.2);transform-origin:top}55%{transform:scaleY(1)}100%{opacity:0}}
+
+
+/* ------------------------------------------------------------- fragman --- */
+.trailer{padding:84px 24px;border-bottom:1px solid var(--line);text-align:center}
+.trailer h2{margin:0 0 30px;font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-.02em;color:var(--cream)}
+.trailer .frame{
+  max-width:1040px;margin:0 auto;border-radius:16px;overflow:hidden;
+  border:1px solid var(--line);box-shadow:0 34px 90px -40px rgba(0,0,0,.95);
+  background:#000;
+}
+.trailer video{display:block;width:100%;aspect-ratio:16/9}
+
+/* -------------------------------------------------------------- facts --- */
+.facts{background:var(--bg);border-bottom:1px solid var(--line)}
+.facts .grid{display:grid;grid-template-columns:repeat(6,1fr)}
+.fact{padding:30px 16px;text-align:center}
+.fact b{display:block;font-size:clamp(24px,3.4vw,38px);color:var(--amber);line-height:1.1;font-weight:900}
+.fact span{display:block;margin-top:6px;font-size:13.5px;color:var(--ink-dim)}
+@media(max-width:860px){.facts .grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.facts .grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ------------------------------------------------------------ panolar --- */
+.panel{position:relative;min-height:92svh;display:flex;align-items:flex-end;overflow:hidden}
+.panel .bg{position:absolute;inset:0;z-index:-1}
+.panel .bg img{width:100%;height:112%;object-fit:cover;will-change:transform}
+.panel .bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(7,9,11,.94) 6%,rgba(7,9,11,.35) 42%,rgba(7,9,11,.08) 70%);
+}
+.panel.right{justify-content:flex-end}
+.panel .txt{position:relative;padding:0 max(5vw,26px) 9svh;max-width:760px}
+.panel .kick{
+  font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);
+  font-weight:800;margin:0 0 10px;
+}
+.panel h2{
+  margin:0 0 12px;font-size:clamp(34px,6vw,72px);line-height:1.02;font-weight:900;
+  letter-spacing:-.025em;color:var(--cream);text-shadow:0 4px 30px rgba(0,0,0,.55);
+}
+.panel p{margin:0;font-size:clamp(17px,2.1vw,22px);color:#d3dee6;max-width:44ch;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.panel.right .txt{text-align:end}
+.panel.right p{margin-inline-start:auto}
+
+/* ------------------------------------------------------------ galeri --- */
+.gallery-sec{padding:90px 0}
+.gallery-sec h2{
+  margin:0 0 8px;text-align:center;font-size:clamp(28px,4vw,44px);font-weight:900;
+  letter-spacing:-.02em;color:var(--cream);
+}
+.gallery-sec .sub{text-align:center;color:var(--ink-dim);margin:0 0 40px}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gallery figure{margin:0;border-radius:14px;overflow:hidden;cursor:zoom-in;position:relative}
+.gallery img{width:100%;aspect-ratio:16/9;object-fit:cover;transition:transform .5s ease}
+.gallery figure:hover img{transform:scale(1.06)}
+.gallery figcaption{
+  position:absolute;inset-inline:0;bottom:0;padding:26px 14px 11px;font-size:13.5px;
+  color:#e5edf2;background:linear-gradient(to top,rgba(4,6,8,.88),rgba(4,6,8,0));
+}
+@media(max-width:860px){.gallery{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.gallery{grid-template-columns:1fr}}
+
+/* --------------------------------------------------------------- final --- */
+.final{position:relative;padding:120px 24px;text-align:center;overflow:hidden;border-top:1px solid var(--line)}
+.final .bg{position:absolute;inset:0;z-index:-1}
+.final .bg img{width:100%;height:100%;object-fit:cover;object-position:center 60%}
+.final .bg::after{content:"";position:absolute;inset:0;background:rgba(7,9,11,.86)}
+.final .logo{width:130px;margin:0 auto 22px;filter:drop-shadow(0 10px 30px rgba(0,0,0,.6))}
+.final h2{margin:0 0 10px;font-size:clamp(30px,5vw,56px);font-weight:900;letter-spacing:-.02em;color:var(--cream)}
+.final p{margin:0 0 30px;color:#c8d4dc;font-size:clamp(16px,2vw,20px)}
+.final .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.follow{margin-top:56px}
+.follow h3{
+  margin:0 0 18px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ink-dim);font-weight:800;
+}
+.follow .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.follow a{
+  display:inline-flex;align-items:center;gap:11px;padding:13px 22px;border-radius:999px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:var(--ink);
+  font-size:15px;font-weight:600;transition:border-color .15s,color .15s,transform .15s;
+}
+.follow a:hover{border-color:var(--teal);color:var(--teal);text-decoration:none;transform:translateY(-2px)}
+.follow svg{width:20px;height:20px;fill:currentColor;flex:none}
+.follow small{color:var(--ink-dim);font-weight:400}
+
+/* -------------------------------------------------------------- diller -- */
+.langs-sec{padding:64px 24px;border-top:1px solid var(--line);text-align:center;background:var(--panel)}
+.langs-sec h2{margin:0 0 22px;font-size:clamp(22px,3vw,30px);font-weight:800;color:var(--cream)}
+.langs{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.langchip{
+  background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:999px;
+  padding:9px 18px;font-size:15px;color:#bccad4;cursor:pointer;font-family:inherit;
+  transition:border-color .15s,color .15s;
+}
+.langchip:hover{border-color:var(--teal);color:var(--teal)}
+.langchip[aria-current="true"]{background:var(--teal);border-color:var(--teal);color:#03231c;font-weight:700}
+
+/* ------------------------------------------------------------- footer --- */
+footer{padding:36px 24px 100px;color:var(--ink-dim);font-size:14px;text-align:center}
+footer .fsoc{display:flex;gap:18px;justify-content:center;margin-bottom:16px}
+footer .fsoc a{color:var(--ink-dim)}
+footer .fsoc a:hover{color:var(--teal)}
+footer .fsoc svg{width:21px;height:21px;fill:currentColor}
+
+/* ----------------------------------------------------- yapışkan çubuk --- */
+.stickbar{
+  position:fixed;inset-inline:0;bottom:0;z-index:70;
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  padding:12px 18px calc(12px + env(safe-area-inset-bottom));
+  background:rgba(9,12,15,.92);backdrop-filter:blur(14px);border-top:1px solid var(--line);
+  transform:translateY(110%);transition:transform .35s ease;
+}
+.stickbar.on{transform:none}
+.stickbar .btn{padding:11px 24px;font-size:15px}
+.stickbar .soc-mini{display:flex;gap:4px}
+.stickbar .soc-mini a{
+  display:flex;align-items:center;justify-content:center;width:40px;height:40px;
+  border-radius:50%;color:var(--ink-dim);
+}
+.stickbar .soc-mini a:hover{color:var(--teal)}
+.stickbar .soc-mini svg{width:19px;height:19px;fill:currentColor}
+
+/* -------------------------------------------------------------- light --- */
+.lightbox{
+  position:fixed;inset:0;z-index:100;background:rgba(3,5,7,.95);
+  display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out;
+}
+.lightbox.on{display:flex}
+.lightbox img{max-width:100%;max-height:100%;border-radius:10px}
+
+
+/* ---------------------------------------------------------- animasyon --- */
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes heroPop{from{opacity:0;transform:translateY(-26px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes shine{0%{transform:translateX(-130%) skewX(-18deg)}100%{transform:translateX(230%) skewX(-18deg)}}
+@keyframes lbIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+
+/* Kahraman giriş sahnesi: logo düşer, satırlar sırayla yükselir. */
+.hero-logo{animation:heroPop 1s cubic-bezier(.16,1,.3,1) .15s backwards}
+.hero h1{animation:rise .9s cubic-bezier(.16,1,.3,1) .45s backwards}
+.hero .cta{animation:rise .9s cubic-bezier(.16,1,.3,1) .65s backwards}
+.hero .socrow{animation:rise .9s cubic-bezier(.16,1,.3,1) .8s backwards}
+.scrolldown{animation:rise 1s ease 1.3s backwards}
+
+/* İstek listesi düğmesinde ara sıra geçen parıltı. */
+.btn-wish{position:relative;overflow:hidden}
+.btn-wish::after{
+  content:"";position:absolute;top:0;bottom:0;width:38%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);
+  animation:shine 3.6s ease-in-out infinite;animation-delay:1.6s;
+}
+
+/* Pano metinleri: şerit, başlık, cümle sırayla. */
+.panel .txt .kick,.panel .txt h2,.panel .txt p{
+  opacity:0;transform:translateY(24px);
+  transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);
+}
+.panel .txt.in .kick{opacity:1;transform:none}
+.panel .txt.in h2{opacity:1;transform:none;transition-delay:.12s}
+.panel .txt.in p{opacity:1;transform:none;transition-delay:.24s}
+/* Şeridin altında büyüyen çizgi. */
+.panel .kick::after{
+  content:"";display:block;width:0;height:2px;margin-top:8px;background:var(--teal);
+  transition:width .8s cubic-bezier(.16,1,.3,1) .3s;
+}
+.panel.right .kick::after{margin-inline-start:auto}
+.panel .txt.in .kick::after{width:56px}
+
+/* Kademeli beliriş: JS elemanlara --d gecikmesi basıyor. */
+.reveal{transition-delay:var(--d,0s)}
+
+/* Galeri kareleri parça parça. */
+.gallery figure{opacity:0;transform:translateY(22px) scale(.98);transition:opacity .6s ease,transform .6s cubic-bezier(.16,1,.3,1)}
+.gallery.in figure{opacity:1;transform:none}
+.gallery.in figure:nth-child(2){transition-delay:.08s}
+.gallery.in figure:nth-child(3){transition-delay:.16s}
+.gallery.in figure:nth-child(4){transition-delay:.24s}
+.gallery.in figure:nth-child(5){transition-delay:.32s}
+.gallery.in figure:nth-child(6){transition-delay:.4s}
+
+/* Final logosu hafifçe süzülür. */
+.final .logo{animation:floaty 5.5s ease-in-out infinite}
+
+/* Büyüteç yumuşak açılır. */
+.lightbox.on img{animation:lbIn .22s ease}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-logo,.hero h1,.hero .cta,.hero .socrow,.scrolldown,.final .logo{animation:none}
+  .btn-wish::after{display:none}
+  .panel .txt .kick,.panel .txt h2,.panel .txt p{opacity:1;transform:none;transition:none}
+  .panel .kick::after{width:56px;transition:none}
+  .gallery figure{opacity:1;transform:none;transition:none}
+}
+
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .hero .bg img{animation:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <img src="img/logo.png" alt="Moto Courier Simulator">
+  <span class="sp"></span>
+  <div class="soc-mini">
+    <a href="https://www.instagram.com/motocouriersimulator/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path style="fill:none;stroke:currentColor;stroke-width:1.9" d="M7.6 3.1h8.8a4.5 4.5 0 0 1 4.5 4.5v8.8a4.5 4.5 0 0 1-4.5 4.5H7.6a4.5 4.5 0 0 1-4.5-4.5V7.6a4.5 4.5 0 0 1 4.5-4.5z"/><circle style="fill:none;stroke:currentColor;stroke-width:1.9" cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.3"/></svg></a>
+    <a href="https://www.youtube.com/@motocouriersimulator" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 12s0-3.4-.43-5.04a2.6 2.6 0 0 0-1.84-1.85C19.08 4.7 12 4.7 12 4.7s-7.08 0-8.73.41A2.6 2.6 0 0 0 1.43 6.96C1 8.6 1 12 1 12s0 3.4.43 5.04a2.6 2.6 0 0 0 1.84 1.85c1.65.41 8.73.41 8.73.41s7.08 0 8.73-.41a2.6 2.6 0 0 0 1.84-1.85C23 15.4 23 12 23 12zM9.75 15.27V8.73L15.5 12l-5.75 3.27z"/></svg></a>
+    <a href="https://x.com/MotoCourierGame" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.81-5.96 6.81H1.68l7.73-8.84L1.25 2.25h6.82l4.71 6.23 5.46-6.23zm-1.16 17.52h1.83L7.01 4.13H5.05l12.03 15.64z"/></svg></a>
+  </div>
+  <a class="btn btn-wish" id="wish-nav" href="#"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span data-i18n="cta_wish"></span></a>
+  <select id="lang-pick" aria-label="Language"></select>
+</nav>
+
+<header class="hero">
+  <div class="bg"><img src="img/hero.jpg" alt="" fetchpriority="high"></div>
+  <img class="hero-logo" src="img/logo.png" alt="Moto Courier Simulator">
+  <h1><span data-i18n="hero1"></span> <span data-i18n="hero2"></span><br><em data-i18n="hero3"></em></h1>
+  <div class="cta">
+    <a class="btn btn-wish" id="wish-hero" href="#"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span data-i18n="cta_wish"></span></a>
+    <a class="btn btn-ghost" href="#fragman" data-i18n="trl_h"></a>
+  </div>
+  <div class="socrow">
+    <a href="https://www.instagram.com/motocouriersimulator/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path style="fill:none;stroke:currentColor;stroke-width:1.9" d="M7.6 3.1h8.8a4.5 4.5 0 0 1 4.5 4.5v8.8a4.5 4.5 0 0 1-4.5 4.5H7.6a4.5 4.5 0 0 1-4.5-4.5V7.6a4.5 4.5 0 0 1 4.5-4.5z"/><circle style="fill:none;stroke:currentColor;stroke-width:1.9" cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.3"/></svg></a>
+    <a href="https://www.youtube.com/@motocouriersimulator" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 12s0-3.4-.43-5.04a2.6 2.6 0 0 0-1.84-1.85C19.08 4.7 12 4.7 12 4.7s-7.08 0-8.73.41A2.6 2.6 0 0 0 1.43 6.96C1 8.6 1 12 1 12s0 3.4.43 5.04a2.6 2.6 0 0 0 1.84 1.85c1.65.41 8.73.41 8.73.41s7.08 0 8.73-.41a2.6 2.6 0 0 0 1.84-1.85C23 15.4 23 12 23 12zM9.75 15.27V8.73L15.5 12l-5.75 3.27z"/></svg></a>
+    <a href="https://x.com/MotoCourierGame" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.81-5.96 6.81H1.68l7.73-8.84L1.25 2.25h6.82l4.71 6.23 5.46-6.23zm-1.16 17.52h1.83L7.01 4.13H5.05l12.03 15.64z"/></svg></a>
+  </div>
+  <div class="scrolldown" data-i18n="scroll_hint"></div>
+</header>
+
+
+<section class="trailer" id="fragman">
+  <h2 data-i18n="trl_h"></h2>
+  <div class="frame reveal">
+    <video controls preload="none" poster="img/trailer_poster.jpg" playsinline>
+      <source src="video/trailer.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+<div class="facts">
+  <div class="wrap">
+    <div class="grid">
+      <div class="fact"><b>2,25&nbsp;km²</b><span data-i18n="f1l"></span></div>
+      <div class="fact"><b>800</b><span data-i18n="f2l"></span></div>
+      <div class="fact"><b>260</b><span data-i18n="fveh_l"></span></div>
+      <div class="fact"><b>15</b><span data-i18n="f3l"></span></div>
+      <div class="fact"><b>4</b><span data-i18n="f4l"></span></div>
+      <div class="fact"><b>8</b><span data-i18n="f5l"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Tam ekran panolar: panel başına tek fikir, tek cümle. -->
+<section class="panel">
+  <div class="bg"><img src="img/sehir.jpg" alt="" loading="lazy"></div>
+  <div class="txt reveal">
+    <p class="kick">01</p>
+    <h2 data-i18n="p_city_t"></h2>
+    <p data-i18n="p_city_s"></p>
+  </div>
+</section>
+
+<section class="panel right">
+  <div class="bg"><img src="img/gece.jpg" alt="" loading="lazy"></div>
+  <div class="txt reveal">
+    <p class="kick">02</p>
+    <h2 data-i18n="p_night_t"></h2>
+    <p data-i18n="p_night_s"></p>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="bg"><img src="img/moto_yan.jpg" alt="" loading="lazy"></div>
+  <div class="txt reveal">
+    <p class="kick">03</p>
+    <h2 data-i18n="p_market_t"></h2>
+    <p data-i18n="p_market_s"></p>
+  </div>
+</section>
+
+<section class="panel right">
+  <div class="bg"><img src="img/telefon.jpg" alt="" loading="lazy"></div>
+  <div class="txt reveal">
+    <p class="kick">04</p>
+    <h2 data-i18n="p_phone_t"></h2>
+    <p data-i18n="p_phone_s"></p>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="bg"><img src="img/bisiklet.jpg" alt="" loading="lazy"></div>
+  <div class="txt reveal">
+    <p class="kick">05</p>
+    <h2 data-i18n="p_coop_t"></h2>
+    <p data-i18n="p_coop_s"></p>
+  </div>
+</section>
+
+<section class="panel right">
+  <div class="bg"><img src="img/iskele.jpg" alt="" loading="lazy"></div>
+  <div class="txt reveal">
+    <p class="kick">06</p>
+    <h2 data-i18n="p_pier_t"></h2>
+    <p data-i18n="p_pier_s"></p>
+  </div>
+</section>
+
+<section class="gallery-sec" id="galeri">
+  <div class="wrap">
+    <h2 class="reveal" data-i18n="ga_h2"></h2>
+    <p class="sub reveal" data-i18n="ga_p"></p>
+    <div class="gallery">
+      <figure><img src="img/hero.jpg" alt="" loading="lazy"><figcaption data-i18n="g1"></figcaption></figure>
+      <figure><img src="img/aksam.jpg" alt="" loading="lazy"><figcaption data-i18n="g8"></figcaption></figure>
+      <figure><img src="img/oyun_hud.jpg" alt="" loading="lazy"><figcaption data-i18n="g7"></figcaption></figure>
+      <figure><img src="img/omuz.jpg" alt="" loading="lazy"><figcaption data-i18n="ni_c3"></figcaption></figure>
+      <figure><img src="img/sehir.jpg" alt="" loading="lazy"><figcaption data-i18n="g2"></figcaption></figure>
+      <figure><img src="img/iskele.jpg" alt="" loading="lazy"><figcaption data-i18n="g3"></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="steam">
+  <div class="bg"><img src="img/aksam.jpg" alt="" loading="lazy"></div>
+  <img class="logo" src="img/logo.png" alt="">
+  <h2 class="reveal" data-i18n="fin_h"></h2>
+  <p class="reveal" data-i18n="fin_p"></p>
+  <div class="cta reveal">
+    <a class="btn btn-wish" id="wish-final" href="#"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span data-i18n="cta_wish"></span></a>
+  </div>
+  <div class="follow reveal">
+    <h3 data-i18n="follow_h"></h3>
+    <div class="row">
+      <a href="https://www.instagram.com/motocouriersimulator/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path style="fill:none;stroke:currentColor;stroke-width:1.9" d="M7.6 3.1h8.8a4.5 4.5 0 0 1 4.5 4.5v8.8a4.5 4.5 0 0 1-4.5 4.5H7.6a4.5 4.5 0 0 1-4.5-4.5V7.6a4.5 4.5 0 0 1 4.5-4.5z"/><circle style="fill:none;stroke:currentColor;stroke-width:1.9" cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.3"/></svg>
+        Instagram <small>@motocouriersimulator</small>
+      </a>
+      <a href="https://www.youtube.com/@motocouriersimulator" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M23 12s0-3.4-.43-5.04a2.6 2.6 0 0 0-1.84-1.85C19.08 4.7 12 4.7 12 4.7s-7.08 0-8.73.41A2.6 2.6 0 0 0 1.43 6.96C1 8.6 1 12 1 12s0 3.4.43 5.04a2.6 2.6 0 0 0 1.84 1.85c1.65.41 8.73.41 8.73.41s7.08 0 8.73-.41a2.6 2.6 0 0 0 1.84-1.85C23 15.4 23 12 23 12zM9.75 15.27V8.73L15.5 12l-5.75 3.27z"/></svg>
+        YouTube <small>@motocouriersimulator</small>
+      </a>
+      <a href="https://x.com/MotoCourierGame" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.81-5.96 6.81H1.68l7.73-8.84L1.25 2.25h6.82l4.71 6.23 5.46-6.23zm-1.16 17.52h1.83L7.01 4.13H5.05l12.03 15.64z"/></svg>
+        X <small>@MotoCourierGame</small>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="langs-sec" id="diller">
+  <h2 data-i18n="lg_h2"></h2>
+  <div class="langs" id="lang-chips"></div>
+</div>
+
+<footer>
+  <div class="fsoc">
+    <a href="https://www.instagram.com/motocouriersimulator/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path style="fill:none;stroke:currentColor;stroke-width:1.9" d="M7.6 3.1h8.8a4.5 4.5 0 0 1 4.5 4.5v8.8a4.5 4.5 0 0 1-4.5 4.5H7.6a4.5 4.5 0 0 1-4.5-4.5V7.6a4.5 4.5 0 0 1 4.5-4.5z"/><circle style="fill:none;stroke:currentColor;stroke-width:1.9" cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.3"/></svg></a>
+    <a href="https://www.youtube.com/@motocouriersimulator" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 12s0-3.4-.43-5.04a2.6 2.6 0 0 0-1.84-1.85C19.08 4.7 12 4.7 12 4.7s-7.08 0-8.73.41A2.6 2.6 0 0 0 1.43 6.96C1 8.6 1 12 1 12s0 3.4.43 5.04a2.6 2.6 0 0 0 1.84 1.85c1.65.41 8.73.41 8.73.41s7.08 0 8.73-.41a2.6 2.6 0 0 0 1.84-1.85C23 15.4 23 12 23 12zM9.75 15.27V8.73L15.5 12l-5.75 3.27z"/></svg></a>
+    <a href="https://x.com/MotoCourierGame" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.81-5.96 6.81H1.68l7.73-8.84L1.25 2.25h6.82l4.71 6.23 5.46-6.23zm-1.16 17.52h1.83L7.01 4.13H5.05l12.03 15.64z"/></svg></a>
+  </div>
+  <div>Moto Courier Simulator · <span data-i18n="foot_dev"></span></div>
+</footer>
+
+<!-- Kaydırınca beliren istek listesi çubuğu. -->
+<div class="stickbar" id="stickbar">
+  <a class="btn btn-wish" id="wish-stick" href="#"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span data-i18n="cta_wish"></span></a>
+  <div class="soc-mini">
+    <a href="https://www.instagram.com/motocouriersimulator/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path style="fill:none;stroke:currentColor;stroke-width:1.9" d="M7.6 3.1h8.8a4.5 4.5 0 0 1 4.5 4.5v8.8a4.5 4.5 0 0 1-4.5 4.5H7.6a4.5 4.5 0 0 1-4.5-4.5V7.6a4.5 4.5 0 0 1 4.5-4.5z"/><circle style="fill:none;stroke:currentColor;stroke-width:1.9" cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.3"/></svg></a>
+    <a href="https://www.youtube.com/@motocouriersimulator" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 12s0-3.4-.43-5.04a2.6 2.6 0 0 0-1.84-1.85C19.08 4.7 12 4.7 12 4.7s-7.08 0-8.73.41A2.6 2.6 0 0 0 1.43 6.96C1 8.6 1 12 1 12s0 3.4.43 5.04a2.6 2.6 0 0 0 1.84 1.85c1.65.41 8.73.41 8.73.41s7.08 0 8.73-.41a2.6 2.6 0 0 0 1.84-1.85C23 15.4 23 12 23 12zM9.75 15.27V8.73L15.5 12l-5.75 3.27z"/></svg></a>
+    <a href="https://x.com/MotoCourierGame" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.65l-5.21-6.81-5.96 6.81H1.68l7.73-8.84L1.25 2.25h6.82l4.71 6.23 5.46-6.23zm-1.16 17.52h1.83L7.01 4.13H5.05l12.03 15.64z"/></svg></a>
+  </div>
+</div>
+
+<div class="lightbox" id="lb"><img id="lb-img" src="" alt=""></div>
+
+<script src="i18n.js"></script>
+<script>
+/* ------------------------------------------------------------------------ *
+ * STEAM BAĞLANTISI. Mağaza sayfası açılınca URL'yi buraya yapıştır:
+ *   const STEAM_URL = "https://store.steampowered.com/app/000000/...";
+ * Boşken bütün istek listesi düğmeleri "Steam sayfası hazırlanıyor"
+ * rozetine dönüşüyor — çalışmayan düğme gösterilmiyor.
+ * ------------------------------------------------------------------------ */
+const STEAM_URL = "";
+
+const WISH_IDS = ["wish-nav", "wish-hero", "wish-final", "wish-stick"];
+
+function pickInitialLang() {
+  const saved = localStorage.getItem("mcs_lang");
+  if (saved && T[saved]) return saved;
+  for (const nav of navigator.languages || [navigator.language || ""]) {
+    const low = nav.toLowerCase();
+    // pt-BR ile pt-PT AYRI: metinleri gerçekten farklı, tek "pt"ye indirme.
+    if (low.startsWith("pt")) return low.includes("pt-pt") ? "pt_PT" : "pt_BR";
+    const two = low.slice(0, 2);
+    if (T[two]) return two;
+  }
+  return "tr";
+}
+
+function applyLang(code) {
+  const t = T[code] || T.tr;
+  const meta = LANGS.find(l => l.code === code) || LANGS[0];
+
+  document.documentElement.lang = meta.html;
+  document.title = t.title;
+  document.querySelector('meta[name="description"]').content = t.desc;
+  document.querySelector('meta[property="og:title"]').content = t.title;
+  document.querySelector('meta[property="og:description"]').content = t.desc;
+
+  for (const el of document.querySelectorAll("[data-i18n]")) {
+    const v = t[el.dataset.i18n];
+    if (v !== undefined) el.innerHTML = v;
+  }
+
+  for (const id of WISH_IDS) {
+    const btn = document.getElementById(id);
+    if (!btn) continue;
+    const label = btn.querySelector("[data-i18n]");
+    if (STEAM_URL) {
+      btn.href = STEAM_URL;
+      btn.target = "_blank";
+      btn.rel = "noopener";
+      btn.classList.remove("btn-soon");
+      btn.classList.add("btn-wish");
+      label.textContent = t.cta_wish;
+    } else {
+      btn.removeAttribute("href");
+      btn.classList.remove("btn-wish");
+      btn.classList.add("btn-soon");
+      label.textContent = t.steam_soon;
+    }
+  }
+
+  for (const chip of document.querySelectorAll(".langchip")) {
+    chip.setAttribute("aria-current", String(chip.dataset.code === code));
+  }
+  document.getElementById("lang-pick").value = code;
+  localStorage.setItem("mcs_lang", code);
+}
+
+const picker = document.getElementById("lang-pick");
+const chips = document.getElementById("lang-chips");
+for (const l of LANGS) {
+  const opt = document.createElement("option");
+  opt.value = l.code;
+  opt.textContent = l.name;
+  picker.append(opt);
+
+  const chip = document.createElement("button");
+  chip.className = "langchip";
+  chip.type = "button";
+  chip.dataset.code = l.code;
+  chip.textContent = l.name;
+  chip.addEventListener("click", () => applyLang(l.code));
+  chips.append(chip);
+}
+picker.addEventListener("change", () => applyLang(picker.value));
+applyLang(pickInitialLang());
+
+
+/* Sayaçlar: istatistik sayıları görünürken 0'dan sayılır.
+   Yalnız düz tamsayılar ("800", "260") — "2,25 km²" olduğu gibi kalır. */
+const factObs = new IntersectionObserver((entries) => {
+  for (const e of entries) {
+    if (!e.isIntersecting) continue;
+    factObs.unobserve(e.target);
+    const b = e.target;
+    const n = parseInt(b.textContent, 10);
+    if (!/^\d+$/.test(b.textContent.trim()) || !isFinite(n)) continue;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) continue;
+    const t0 = performance.now(), dur = 1300;
+    const tick = (now) => {
+      const k = Math.min((now - t0) / dur, 1);
+      b.textContent = String(Math.round(n * (1 - Math.pow(1 - k, 3))));
+      if (k < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+}, {threshold: .6});
+document.querySelectorAll(".fact b").forEach(el => factObs.observe(el));
+
+/* Pano metin sahnelemesi: .txt görünürken .in alır (çocuklar kademeli). */
+const panelObs = new IntersectionObserver((entries) => {
+  for (const e of entries) {
+    if (e.isIntersecting) { e.target.classList.add("in"); panelObs.unobserve(e.target); }
+  }
+}, {rootMargin: "0px 0px -18% 0px"});
+document.querySelectorAll(".panel .txt").forEach(el => {
+  el.classList.remove("reveal");   // eski tek parça beliriş yerine sahneleme
+  panelObs.observe(el);
+});
+
+/* Galeri: kapsayıcı .in alınca kareler nth-child gecikmesiyle geliyor. */
+const galObs = new IntersectionObserver((entries) => {
+  for (const e of entries) {
+    if (e.isIntersecting) { e.target.classList.add("in"); galObs.unobserve(e.target); }
+  }
+}, {rootMargin: "0px 0px -12% 0px"});
+document.querySelectorAll(".gallery").forEach(el => galObs.observe(el));
+
+/* Görünüre girenleri yumuşak açan gözlemci. */
+const io = new IntersectionObserver((entries) => {
+  for (const e of entries) {
+    if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+  }
+}, {rootMargin: "0px 0px -10% 0px"});
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+/* Kaydırma: üst çubuğu doldur, kahraman geçilince alt çubuğu göster. */
+const nav = document.getElementById("nav");
+const stick = document.getElementById("stickbar");
+let heroH = window.innerHeight;
+addEventListener("resize", () => { heroH = window.innerHeight; });
+addEventListener("scroll", () => {
+  nav.classList.toggle("solid", scrollY > 40);
+  // Finaldeyken alt çubuk gizli: aynı düğme zaten ekranda, ikisi üst üste
+  // binince ekranın altı iki kat düğme oluyordu.
+  const fin = document.getElementById("steam").getBoundingClientRect();
+  stick.classList.toggle("on", scrollY > heroH * 0.9 && fin.top > innerHeight * 0.6);
+}, {passive: true});
+
+/* Panolarda hafif paralaks — küçük translate, sadece görünürken. */
+const panels = [...document.querySelectorAll(".panel .bg img")];
+if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  addEventListener("scroll", () => {
+    for (const img of panels) {
+      const r = img.closest(".panel").getBoundingClientRect();
+      if (r.bottom < 0 || r.top > innerHeight) continue;
+      const k = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+      img.style.transform = `translateY(${k * -34}px)`;
+    }
+  }, {passive: true});
+}
+
+/* Galeri büyüteci. */
+const lb = document.getElementById("lb");
+const lbImg = document.getElementById("lb-img");
+for (const fig of document.querySelectorAll(".gallery figure")) {
+  fig.addEventListener("click", () => {
+    lbImg.src = fig.querySelector("img").src;
+    lb.classList.add("on");
+  });
+}
+lb.addEventListener("click", () => lb.classList.remove("on"));
+document.addEventListener("keydown", e => { if (e.key === "Escape") lb.classList.remove("on"); });
+</script>
+</body>
+</html>
