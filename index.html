@@ -176,6 +176,55 @@ a{color:var(--teal);text-decoration:none}
 @media(max-width:860px){.gallery{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.gallery{grid-template-columns:1fr}}
 
+/* ---------------------------------------------------------- klip şeridi --- */
+.reel{overflow:hidden;padding:30px 0;border-bottom:1px solid var(--line);background:var(--bg)}
+.reel-track{display:flex;width:max-content;animation:reelScroll 46s linear infinite}
+.reel:hover .reel-track{animation-play-state:paused}
+.reel-set{display:flex;gap:14px;padding-right:14px}
+.reel video{height:205px;width:auto;border-radius:12px;border:1px solid var(--line);display:block;background:#000}
+@keyframes reelScroll{to{transform:translateX(-50%)}}
+@media(max-width:640px){.reel video{height:145px}}
+
+/* --------------------------------------------------- serpilmiş klipler --- */
+/* Oyundan canlı kareler: masaya serpilmiş polaroidler gibi — hafif eğik,
+   üstünde bant, hover'da düzelir. Tıklayınca büyüteçte oynar. */
+.moments{padding:92px 24px 84px;overflow:hidden}
+.moments .mo-head{text-align:center;margin:0 auto 50px;max-width:760px}
+.moments .mo-kick{
+  font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);
+  font-weight:800;margin:0 0 10px;
+}
+.moments h2{margin:0;font-size:clamp(26px,3.8vw,42px);line-height:1.1;font-weight:900;letter-spacing:-.02em;color:var(--cream)}
+.mo-board{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:34px 26px;max-width:1240px;margin:0 auto}
+.mo{
+  --r:0deg;--y:0px;--yf:1;
+  margin:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  padding:10px 10px 4px;box-shadow:0 30px 70px -30px rgba(0,0,0,.9);
+  width:clamp(270px,38vw,430px);cursor:zoom-in;position:relative;
+  opacity:0;
+  transform:translateY(calc(var(--y)*var(--yf) + 36px)) rotate(var(--r));
+  transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1);
+  transition-delay:var(--d,0s);
+}
+.mo.big{width:clamp(300px,52vw,580px)}
+.mo.in{opacity:1;transform:translateY(calc(var(--y)*var(--yf))) rotate(var(--r))}
+.mo.in:hover{transform:translateY(calc(var(--y)*var(--yf))) rotate(0deg) scale(1.035);z-index:6;transition-delay:0s}
+.mo video{width:100%;border-radius:8px;display:block;background:#000}
+.mo figcaption{padding:11px 8px 8px;font-size:13.5px;color:var(--ink-dim)}
+/* Bant parçası: kartı "masaya yapıştıran" yarı saydam şerit. */
+.mo::before{
+  content:"";position:absolute;top:-13px;left:50%;width:92px;height:26px;z-index:2;
+  transform:translateX(-50%) rotate(calc(var(--r)*-1.5));
+  background:rgba(255,176,46,.42);border:1px solid rgba(255,176,46,.18);border-radius:2px;
+}
+@media(max-width:860px){.mo{--yf:0;width:clamp(250px,80vw,430px)}.mo.big{width:clamp(250px,88vw,580px)}}
+@media(prefers-reduced-motion:reduce){
+  .reel{overflow-x:auto}
+  .reel-track{animation:none}
+  .mo{opacity:1;transform:rotate(var(--r));transition:none}
+  .mo.in{transform:rotate(var(--r))}
+}
+
 /* --------------------------------------------------------------- final --- */
 .final{position:relative;padding:120px 24px;text-align:center;overflow:hidden;border-top:1px solid var(--line)}
 .final .bg{position:absolute;inset:0;z-index:-1}
@@ -372,6 +421,26 @@ footer .fsoc svg{width:21px;height:21px;fill:currentColor}
   </div>
 </div>
 
+<!-- Akan klip şeridi: oyundan canlı kareler, kesintisiz döner. -->
+<section class="reel" aria-hidden="true">
+  <div class="reel-track">
+    <div class="reel-set">
+      <video src="video/clips/city.mp4" poster="video/clips/posters/city.jpg" muted loop playsinline preload="metadata" data-clip></video>
+      <video src="video/clips/slide.mp4" poster="video/clips/posters/slide.jpg" muted loop playsinline preload="metadata" data-clip></video>
+      <video src="video/clips/longride.mp4" poster="video/clips/posters/longride.jpg" muted loop playsinline preload="metadata" data-clip></video>
+      <video src="video/clips/crash.mp4" poster="video/clips/posters/crash.jpg" muted loop playsinline preload="metadata" data-clip></video>
+      <video src="video/clips/walk.mp4" poster="video/clips/posters/walk.jpg" muted loop playsinline preload="metadata" data-clip></video>
+    </div>
+    <div class="reel-set">
+      <video src="video/clips/city.mp4" poster="video/clips/posters/city.jpg" muted loop playsinline preload="metadata" data-clip></video>
+      <video src="video/clips/slide.mp4" poster="video/clips/posters/slide.jpg" muted loop playsinline preload="metadata" data-clip></video>
+      <video src="video/clips/longride.mp4" poster="video/clips/posters/longride.jpg" muted loop playsinline preload="metadata" data-clip></video>
+      <video src="video/clips/crash.mp4" poster="video/clips/posters/crash.jpg" muted loop playsinline preload="metadata" data-clip></video>
+      <video src="video/clips/walk.mp4" poster="video/clips/posters/walk.jpg" muted loop playsinline preload="metadata" data-clip></video>
+    </div>
+  </div>
+</section>
+
 <!-- Tam ekran panolar: panel başına tek fikir, tek cümle. -->
 <section class="panel">
   <div class="bg"><img src="img/sehir.jpg" alt="" loading="lazy"></div>
@@ -388,6 +457,24 @@ footer .fsoc svg{width:21px;height:21px;fill:currentColor}
     <p class="kick">02</p>
     <h2 data-i18n="p_night_t"></h2>
     <p data-i18n="p_night_s"></p>
+  </div>
+</section>
+
+<!-- Serpilmiş klipler 1: gece, hava, canlı trafik. -->
+<section class="moments">
+  <div class="mo-head">
+    <p class="mo-kick reveal" data-i18n="mo_k"></p>
+    <h2 class="reveal" data-i18n="mo1_t"></h2>
+  </div>
+  <div class="mo-board">
+    <figure class="mo big" style="--r:-2.2deg" data-full="video/clips/rain.mp4">
+      <video src="video/clips/rain.mp4" poster="video/clips/posters/rain.jpg" muted loop playsinline preload="metadata" data-clip></video>
+      <figcaption data-i18n="clip_rain"></figcaption>
+    </figure>
+    <figure class="mo" style="--r:2.8deg;--y:46px;--d:.14s" data-full="video/clips/drive.mp4">
+      <video src="video/clips/drive.mp4" poster="video/clips/posters/drive.jpg" muted loop playsinline preload="metadata" data-clip></video>
+      <figcaption data-i18n="clip_drive"></figcaption>
+    </figure>
   </div>
 </section>
 
@@ -409,6 +496,28 @@ footer .fsoc svg{width:21px;height:21px;fill:currentColor}
   </div>
 </section>
 
+<!-- Serpilmiş klipler 2: bütün iş telefonda. -->
+<section class="moments">
+  <div class="mo-head">
+    <p class="mo-kick reveal" data-i18n="mo_k"></p>
+    <h2 class="reveal" data-i18n="mo2_t"></h2>
+  </div>
+  <div class="mo-board">
+    <figure class="mo" style="--r:-3deg;--y:54px" data-full="video/clips/camera.mp4">
+      <video src="video/clips/camera.mp4" poster="video/clips/posters/camera.jpg" muted loop playsinline preload="metadata" data-clip></video>
+      <figcaption data-i18n="clip_camera"></figcaption>
+    </figure>
+    <figure class="mo big" style="--r:1.8deg;--d:.1s" data-full="video/clips/drop.mp4">
+      <video src="video/clips/drop.mp4" poster="video/clips/posters/drop.jpg" muted loop playsinline preload="metadata" data-clip></video>
+      <figcaption data-i18n="clip_drop"></figcaption>
+    </figure>
+    <figure class="mo" style="--r:2.6deg;--y:24px;--d:.2s" data-full="video/clips/take.mp4">
+      <video src="video/clips/take.mp4" poster="video/clips/posters/take.jpg" muted loop playsinline preload="metadata" data-clip></video>
+      <figcaption data-i18n="clip_take"></figcaption>
+    </figure>
+  </div>
+</section>
+
 <section class="panel">
   <div class="bg"><img src="img/bisiklet.jpg" alt="" loading="lazy"></div>
   <div class="txt reveal">
@@ -424,6 +533,24 @@ footer .fsoc svg{width:21px;height:21px;fill:currentColor}
     <p class="kick">06</p>
     <h2 data-i18n="p_pier_t"></h2>
     <p data-i18n="p_pier_s"></p>
+  </div>
+</section>
+
+<!-- Serpilmiş klipler 3: motor senin. -->
+<section class="moments">
+  <div class="mo-head">
+    <p class="mo-kick reveal" data-i18n="mo_k"></p>
+    <h2 class="reveal" data-i18n="mo3_t"></h2>
+  </div>
+  <div class="mo-board">
+    <figure class="mo big" style="--r:-1.9deg" data-full="video/clips/wheelie.mp4">
+      <video src="video/clips/wheelie.mp4" poster="video/clips/posters/wheelie.jpg" muted loop playsinline preload="metadata" data-clip></video>
+      <figcaption data-i18n="clip_wheelie"></figcaption>
+    </figure>
+    <figure class="mo" style="--r:3.2deg;--y:42px;--d:.14s" data-full="video/clips/wash.mp4">
+      <video src="video/clips/wash.mp4" poster="video/clips/posters/wash.jpg" muted loop playsinline preload="metadata" data-clip></video>
+      <figcaption data-i18n="clip_wash"></figcaption>
+    </figure>
   </div>
 </section>
 
@@ -493,7 +620,7 @@ footer .fsoc svg{width:21px;height:21px;fill:currentColor}
   </div>
 </div>
 
-<div class="lightbox" id="lb"><img id="lb-img" src="" alt=""></div>
+<div class="lightbox" id="lb"><img id="lb-img" src="" alt=""><video id="lb-vid" controls loop playsinline style="display:none;max-width:100%;max-height:100%;border-radius:10px"></video></div>
 
 <script src="i18n.js"></script>
 <script>
@@ -517,7 +644,8 @@ function pickInitialLang() {
     const two = low.slice(0, 2);
     if (T[two]) return two;
   }
-  return "tr";
+  // Sistem dili desteklenenlerden biri değilse İngilizce'ye düş.
+  return "en";
 }
 
 function applyLang(code) {
@@ -655,17 +783,47 @@ if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
   }, {passive: true});
 }
 
-/* Galeri büyüteci. */
+/* Klipler: yalnız görünürken oynasın — ekran dışında pil ve CPU yemesin. */
+const clipObs = new IntersectionObserver((entries) => {
+  for (const e of entries) {
+    if (e.isIntersecting) e.target.play().catch(() => {});
+    else e.target.pause();
+  }
+}, {rootMargin: "140px 0px"});
+document.querySelectorAll("video[data-clip]").forEach(v => clipObs.observe(v));
+
+/* Serpilmiş kartlar da beliriş gözlemcisine girsin. */
+document.querySelectorAll(".mo").forEach(el => io.observe(el));
+
+/* Galeri büyüteci — resim ve klip. */
 const lb = document.getElementById("lb");
 const lbImg = document.getElementById("lb-img");
+const lbVid = document.getElementById("lb-vid");
+function closeLb() {
+  lb.classList.remove("on");
+  lbVid.pause();
+  lbVid.removeAttribute("src");
+  lbVid.load();
+}
 for (const fig of document.querySelectorAll(".gallery figure")) {
   fig.addEventListener("click", () => {
+    lbVid.style.display = "none";
+    lbImg.style.display = "block";
     lbImg.src = fig.querySelector("img").src;
     lb.classList.add("on");
   });
 }
-lb.addEventListener("click", () => lb.classList.remove("on"));
-document.addEventListener("keydown", e => { if (e.key === "Escape") lb.classList.remove("on"); });
+for (const fig of document.querySelectorAll(".mo")) {
+  fig.addEventListener("click", () => {
+    lbImg.style.display = "none";
+    lbVid.style.display = "block";
+    lbVid.src = fig.dataset.full;
+    lb.classList.add("on");
+    lbVid.play().catch(() => {});
+  });
+}
+lb.addEventListener("click", closeLb);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeLb(); });
 </script>
 </body>
 </html>

@@ -1156,3 +1156,118 @@ const T_FIX = {
 };
 
 for (const code in T_FIX) Object.assign(T[code], T_FIX[code]);
+
+/* --------------------------------------------------------------------------
+ * KLİPLER. Sayfaya serpilmiş oyun içi kayıtların başlıkları ve akan şerit /
+ * kolaj bölümlerinin başlıkları. Kayıtlar video/clips/*.mp4 (GIF'ten
+ * çevrildi); metin kayıttaki sahneyi anlatıyor.
+ * ------------------------------------------------------------------------ */
+
+const T_CLIPS = {
+tr: {
+  mo_k: "Sahadan",
+  mo1_t: "Hava değişir, vardiya bitmez",
+  mo2_t: "Bütün iş telefonda",
+  mo3_t: "Motor senin, derdi de senin",
+  clip_rain: "Gece yağmuru — paket hâlâ bekliyor.",
+  clip_drive: "Trafik canlı: ambulansa yol ver.",
+  clip_drop: "Sipariş düştü — Kat 2, Daire 8.",
+  clip_camera: "Telefonda kamera modu — şehri çek.",
+  clip_take: "Paketi dükkândan elden alıyorsun.",
+  clip_wheelie: "Ön teker havada, süre işliyor.",
+  clip_wash: "Vardiya sonu: köpük, su, parlak motor.",
+},
+en: {
+  mo_k: "From the street",
+  mo1_t: "Weather changes, the shift doesn't",
+  mo2_t: "The whole job runs on your phone",
+  mo3_t: "Your bike, your problem",
+  clip_rain: "Night rain — the parcel is still waiting.",
+  clip_drive: "Traffic is alive: make way for the ambulance.",
+  clip_drop: "New order — Floor 2, Flat 8.",
+  clip_camera: "Camera mode on your phone — shoot the city.",
+  clip_take: "You pick the parcel up in person.",
+  clip_wheelie: "Front wheel up, the timer's running.",
+  clip_wash: "After the shift: foam, water, shiny bike.",
+},
+fr: {
+  mo_k: "Sur le terrain",
+  mo1_t: "La météo change, pas la tournée",
+  mo2_t: "Tout le boulot passe par le téléphone",
+  mo3_t: "Ta moto, ton problème",
+  clip_rain: "Pluie nocturne — le colis attend toujours.",
+  clip_drive: "Le trafic est vivant : laisse passer l'ambulance.",
+  clip_drop: "Nouvelle commande — 2e étage, appart 8.",
+  clip_camera: "Mode caméra sur le téléphone — filme la ville.",
+  clip_take: "Tu récupères le colis en main propre.",
+  clip_wheelie: "Roue avant levée, le chrono tourne.",
+  clip_wash: "Après la tournée : mousse, eau, moto brillante.",
+},
+de: {
+  mo_k: "Von der Straße",
+  mo1_t: "Das Wetter wechselt, die Schicht nicht",
+  mo2_t: "Der ganze Job läuft übers Handy",
+  mo3_t: "Dein Motorrad, dein Problem",
+  clip_rain: "Nachtregen — das Paket wartet trotzdem.",
+  clip_drive: "Der Verkehr lebt: Platz für den Krankenwagen.",
+  clip_drop: "Neuer Auftrag — 2. Etage, Wohnung 8.",
+  clip_camera: "Kameramodus auf dem Handy — film die Stadt.",
+  clip_take: "Das Paket holst du persönlich ab.",
+  clip_wheelie: "Vorderrad oben, die Uhr läuft.",
+  clip_wash: "Nach der Schicht: Schaum, Wasser, glänzendes Bike.",
+},
+it: {
+  mo_k: "Dalla strada",
+  mo1_t: "Il meteo cambia, il turno no",
+  mo2_t: "Tutto il lavoro passa dal telefono",
+  mo3_t: "La moto è tua, i guai pure",
+  clip_rain: "Pioggia notturna — il pacco aspetta ancora.",
+  clip_drive: "Il traffico è vivo: fai passare l'ambulanza.",
+  clip_drop: "Nuovo ordine — piano 2, interno 8.",
+  clip_camera: "Modalità fotocamera sul telefono — riprendi la città.",
+  clip_take: "Il pacco lo ritiri di persona.",
+  clip_wheelie: "Ruota davanti alzata, il tempo corre.",
+  clip_wash: "Fine turno: schiuma, acqua, moto lucida.",
+},
+es: {
+  mo_k: "Desde la calle",
+  mo1_t: "El clima cambia, el turno no",
+  mo2_t: "Todo el trabajo pasa por el teléfono",
+  mo3_t: "Tu moto, tu problema",
+  clip_rain: "Lluvia nocturna — el paquete sigue esperando.",
+  clip_drive: "El tráfico está vivo: dale paso a la ambulancia.",
+  clip_drop: "Nuevo pedido — piso 2, depto 8.",
+  clip_camera: "Modo cámara en el teléfono — filma la ciudad.",
+  clip_take: "El paquete lo recoges en persona.",
+  clip_wheelie: "Rueda delantera arriba, el tiempo corre.",
+  clip_wash: "Fin del turno: espuma, agua, moto brillante.",
+},
+pt_BR: {
+  mo_k: "Direto da rua",
+  mo1_t: "O tempo muda, o turno não",
+  mo2_t: "O trabalho inteiro passa pelo celular",
+  mo3_t: "Moto sua, problema seu",
+  clip_rain: "Chuva na madrugada — o pacote continua esperando.",
+  clip_drive: "O trânsito é vivo: dá passagem pra ambulância.",
+  clip_drop: "Pedido novo — 2º andar, apto 8.",
+  clip_camera: "Modo câmera no celular — filma a cidade.",
+  clip_take: "O pacote você pega em mãos.",
+  clip_wheelie: "Roda da frente pro alto, o tempo correndo.",
+  clip_wash: "Fim de turno: espuma, água, moto brilhando.",
+},
+pt_PT: {
+  mo_k: "Da rua",
+  mo1_t: "O tempo muda, o turno não",
+  mo2_t: "O trabalho todo passa pelo telemóvel",
+  mo3_t: "A mota é tua, o problema também",
+  clip_rain: "Chuva noturna — a encomenda continua à espera.",
+  clip_drive: "O trânsito está vivo: dá prioridade à ambulância.",
+  clip_drop: "Novo pedido — 2.º andar, porta 8.",
+  clip_camera: "Modo câmara no telemóvel — filma a cidade.",
+  clip_take: "A encomenda levantas tu em mãos.",
+  clip_wheelie: "Roda da frente no ar, o tempo a contar.",
+  clip_wash: "Fim de turno: espuma, água, mota a brilhar.",
+},
+};
+
+for (const code in T_CLIPS) Object.assign(T[code], T_CLIPS[code]);
