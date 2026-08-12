@@ -54,7 +54,10 @@ a{color:var(--teal);text-decoration:none}
   border-radius:999px;padding:8px 14px;font-size:14px;font-family:inherit;cursor:pointer;
 }
 .nav .btn-wish{padding:9px 20px;font-size:14.5px}
-@media(max-width:640px){.nav .soc-mini{display:none}.nav .btn-wish{display:none}}
+/* Dar ekranda üst çubukta yalnız logo + dil kalsın. #wish-nav ile:
+   düğme JS'te btn-wish <-> btn-soon arasında sınıf değiştiriyor,
+   sınıfa göre gizlemek btn-soon halini açıkta bırakıyordu. */
+@media(max-width:640px){.nav .soc-mini{display:none}.nav #wish-nav{display:none}}
 
 /* ------------------------------------------------------------- düğme --- */
 .btn{
@@ -285,6 +288,9 @@ footer .fsoc svg{width:21px;height:21px;fill:currentColor}
 }
 .stickbar .soc-mini a:hover{color:var(--teal)}
 .stickbar .soc-mini svg{width:19px;height:19px;fill:currentColor}
+/* Dar ekranda düğme + ikonlar sığmıyor, ikonlar kesiliyordu:
+   çubukta asıl iş istek listesi düğmesinin — ikonlar gitsin. */
+@media(max-width:520px){.stickbar .soc-mini{display:none}}
 
 /* -------------------------------------------------------------- light --- */
 .lightbox{
