@@ -33,10 +33,14 @@ Yeni fragman gelince aynı komutla sıkıştırıp dosyanın üstüne yaz.
 
 ## Steam bağlantısı
 
-`index.html` içinde `const STEAM_URL = ""` satırı var. Mağaza sayfası
-açılınca URL'yi oraya yapıştır — bütün "istek listesine ekle" düğmeleri
-kendiliğinden canlanıyor. Boşken düğmeler "Steam sayfası hazırlanıyor"
-rozetine dönüşüyor; çalışmayan düğme gösterilmiyor.
+Mağaza sayfası yayında:
+<https://store.steampowered.com/app/5015840/Moto_Courier_Simulator/>
+
+`index.html` içinde `const STEAM_URL` satırı bu adrese bakıyor — nav,
+hero, kapanış ve alt çubuktaki bütün "istek listesine ekle" düğmeleri
+oradan besleniyor, ayrıca sosyal satırlarda Steam bağlantısı duruyor.
+Satır boşaltılırsa düğmeler yeniden "Steam sayfası hazırlanıyor"
+rozetine dönüyor; çalışmayan düğme gösterilmiyor.
 
 ## Diller
 
