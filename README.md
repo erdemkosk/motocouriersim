@@ -19,8 +19,8 @@ altında.
 
 ## Fragmanlar
 
-Fragman bölümü iki videoluk bir şerit: `video/trailer1.mp4` (10 sn sinematik,
-sesi yok) ve `video/trailer2.mp4` (55 sn uzun fragman). Oynayan bitince şerit
+Fragman bölümü iki videoluk bir şerit: `video/trailer1.mp4` (14 sn sinematik)
+ve `video/trailer2.mp4` (55 sn uzun fragman). Oynayan bitince şerit
 sağa kayıp sıradakini kendiliğinden başlatıyor, sonuncudan sonra başa dönüyor;
 oklar ve noktalarla elle de geçilebiliyor. Otomatik geçişteki `play()` ilk
 oynatma kullanıcı tıklamasıyla başladığı için tarayıcı engellemiyor —

@@ -1289,7 +1289,6 @@ tr: {
   art_wheelie: "Gün batımı, boş yol, ön teker havada.",
   art_station: "Vardiya başı: depo dolu, benzin tam.",
   art_hop: "Bazı siparişler sorulmadan alınıyor.",
-  art_ambulans: "Trafik kurallarına uy — yoksa ambulans geliyor.",
   trl_prev: "Önceki fragman", trl_next: "Sonraki fragman",
 },
 en: {
@@ -1301,7 +1300,6 @@ en: {
   art_wheelie: "Sunset, empty road, front wheel up.",
   art_station: "Shift start: box loaded, tank full.",
   art_hop: "Some orders get picked up without asking.",
-  art_ambulans: "Follow the traffic rules — or the ambulance comes.",
   trl_prev: "Previous trailer", trl_next: "Next trailer",
 },
 fr: {
@@ -1313,7 +1311,6 @@ fr: {
   art_wheelie: "Coucher de soleil, route vide, roue avant en l'air.",
   art_station: "Début de tournée : caisson plein, réservoir plein.",
   art_hop: "Certaines commandes se ramassent sans demander.",
-  art_ambulans: "Respecte le code de la route — sinon l'ambulance arrive.",
   trl_prev: "Bande-annonce précédente", trl_next: "Bande-annonce suivante",
 },
 de: {
@@ -1325,7 +1322,6 @@ de: {
   art_wheelie: "Sonnenuntergang, leere Straße, Vorderrad in der Luft.",
   art_station: "Schichtbeginn: Box voll, Tank voll.",
   art_hop: "Manche Bestellungen holt man ungefragt ab.",
-  art_ambulans: "Halte dich an die Verkehrsregeln — sonst kommt der Krankenwagen.",
   trl_prev: "Vorheriger Trailer", trl_next: "Nächster Trailer",
 },
 it: {
@@ -1337,7 +1333,6 @@ it: {
   art_wheelie: "Tramonto, strada libera, ruota anteriore in aria.",
   art_station: "Inizio turno: box carico, serbatoio pieno.",
   art_hop: "Certi ordini si ritirano senza chiedere.",
-  art_ambulans: "Rispetta il codice della strada — o arriva l'ambulanza.",
   trl_prev: "Trailer precedente", trl_next: "Trailer successivo",
 },
 es: {
@@ -1349,7 +1344,6 @@ es: {
   art_wheelie: "Atardecer, ruta vacía, rueda delantera en el aire.",
   art_station: "Arranque de turno: caja cargada, tanque lleno.",
   art_hop: "Algunos pedidos se retiran sin preguntar.",
-  art_ambulans: "Respeta las reglas de tránsito — o llega la ambulancia.",
   trl_prev: "Tráiler anterior", trl_next: "Tráiler siguiente",
 },
 pt_BR: {
@@ -1361,7 +1355,6 @@ pt_BR: {
   art_wheelie: "Pôr do sol, pista vazia, roda da frente no ar.",
   art_station: "Início do turno: baú cheio, tanque cheio.",
   art_hop: "Alguns pedidos são retirados sem perguntar.",
-  art_ambulans: "Respeite as regras de trânsito — ou a ambulância chega.",
   trl_prev: "Trailer anterior", trl_next: "Próximo trailer",
 },
 pt_PT: {
@@ -1373,7 +1366,6 @@ pt_PT: {
   art_wheelie: "Pôr do sol, estrada vazia, roda da frente no ar.",
   art_station: "Início do turno: mala cheia, depósito cheio.",
   art_hop: "Algumas encomendas são levantadas sem perguntar.",
-  art_ambulans: "Respeita as regras de trânsito — ou vem a ambulância.",
   trl_prev: "Trailer anterior", trl_next: "Trailer seguinte",
 },
 };
