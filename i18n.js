@@ -1271,3 +1271,111 @@ pt_PT: {
 };
 
 for (const code in T_CLIPS) Object.assign(T[code], T_CLIPS[code]);
+
+/* --------------------------------------------------------------------------
+ * AFİŞLER + İKİ FRAGMAN. Afiş bölümü galeriden AYRI duruyor: aşağıdaki
+ * kareler çalışan oyundan, afişler değil — metin bunu açıkça söylüyor ki
+ * oyuncu ikisini karıştırmasın. trl_prev/trl_next fragman şeridindeki
+ * ok düğmelerinin aria-label'ı.
+ * ------------------------------------------------------------------------ */
+
+const T_ART = {
+tr: {
+  art_eye: "Afişler",
+  art_h2: "Vardiyanın afişleri",
+  art_p: "Bunlar tanıtım afişi — oyun içi görüntü değil. Çalışan oyundan alınmış gerçek kareler hemen aşağıda.",
+  art_rain: "Gece vardiyası: yağmur, neon, dolu şerit.",
+  art_rival: "Rakip kurye aynı sokakta, ortada tek paket.",
+  art_wheelie: "Gün batımı, boş yol, ön teker havada.",
+  art_station: "Vardiya başı: depo dolu, benzin tam.",
+  art_hop: "Bazı siparişler sorulmadan alınıyor.",
+  art_ambulans: "Trafik kurallarına uy — yoksa ambulans geliyor.",
+  trl_prev: "Önceki fragman", trl_next: "Sonraki fragman",
+},
+en: {
+  art_eye: "Key art",
+  art_h2: "Posters from the shift",
+  art_p: "These are promo posters — not in-game footage. The real frames, taken from the running game, are right below.",
+  art_rain: "Night shift: rain, neon, a full lane.",
+  art_rival: "A rival courier on the same street, one parcel between you.",
+  art_wheelie: "Sunset, empty road, front wheel up.",
+  art_station: "Shift start: box loaded, tank full.",
+  art_hop: "Some orders get picked up without asking.",
+  art_ambulans: "Follow the traffic rules — or the ambulance comes.",
+  trl_prev: "Previous trailer", trl_next: "Next trailer",
+},
+fr: {
+  art_eye: "Illustrations",
+  art_h2: "Les affiches de la tournée",
+  art_p: "Ce sont des affiches promo — pas des images du jeu. Les vraies captures, prises dans le jeu en cours, sont juste en dessous.",
+  art_rain: "Service de nuit : pluie, néons, voie saturée.",
+  art_rival: "Un coursier rival dans la même rue, un seul colis en jeu.",
+  art_wheelie: "Coucher de soleil, route vide, roue avant en l'air.",
+  art_station: "Début de tournée : caisson plein, réservoir plein.",
+  art_hop: "Certaines commandes se ramassent sans demander.",
+  art_ambulans: "Respecte le code de la route — sinon l'ambulance arrive.",
+  trl_prev: "Bande-annonce précédente", trl_next: "Bande-annonce suivante",
+},
+de: {
+  art_eye: "Key-Art",
+  art_h2: "Die Plakate der Schicht",
+  art_p: "Das sind Werbeplakate — keine Spielaufnahmen. Die echten Bilder aus dem laufenden Spiel kommen gleich darunter.",
+  art_rain: "Nachtschicht: Regen, Neon, volle Spur.",
+  art_rival: "Ein rivalisierender Kurier in derselben Straße, ein Paket dazwischen.",
+  art_wheelie: "Sonnenuntergang, leere Straße, Vorderrad in der Luft.",
+  art_station: "Schichtbeginn: Box voll, Tank voll.",
+  art_hop: "Manche Bestellungen holt man ungefragt ab.",
+  art_ambulans: "Halte dich an die Verkehrsregeln — sonst kommt der Krankenwagen.",
+  trl_prev: "Vorheriger Trailer", trl_next: "Nächster Trailer",
+},
+it: {
+  art_eye: "Illustrazioni",
+  art_h2: "I manifesti del turno",
+  art_p: "Sono poster promozionali — non immagini di gioco. I fotogrammi veri, presi dal gioco in esecuzione, sono qui sotto.",
+  art_rain: "Turno di notte: pioggia, neon, corsia piena.",
+  art_rival: "Un corriere rivale nella stessa via, un solo pacco in mezzo.",
+  art_wheelie: "Tramonto, strada libera, ruota anteriore in aria.",
+  art_station: "Inizio turno: box carico, serbatoio pieno.",
+  art_hop: "Certi ordini si ritirano senza chiedere.",
+  art_ambulans: "Rispetta il codice della strada — o arriva l'ambulanza.",
+  trl_prev: "Trailer precedente", trl_next: "Trailer successivo",
+},
+es: {
+  art_eye: "Ilustraciones",
+  art_h2: "Los afiches del turno",
+  art_p: "Son afiches promocionales — no imágenes del juego. Las capturas reales, tomadas del juego en ejecución, están justo abajo.",
+  art_rain: "Turno nocturno: lluvia, neón, carril lleno.",
+  art_rival: "Un repartidor rival en la misma calle, un solo pedido de por medio.",
+  art_wheelie: "Atardecer, ruta vacía, rueda delantera en el aire.",
+  art_station: "Arranque de turno: caja cargada, tanque lleno.",
+  art_hop: "Algunos pedidos se retiran sin preguntar.",
+  art_ambulans: "Respeta las reglas de tránsito — o llega la ambulancia.",
+  trl_prev: "Tráiler anterior", trl_next: "Tráiler siguiente",
+},
+pt_BR: {
+  art_eye: "Ilustrações",
+  art_h2: "Os cartazes do turno",
+  art_p: "São cartazes promocionais — não imagens do jogo. As capturas reais, tiradas do jogo rodando, estão logo abaixo.",
+  art_rain: "Turno da noite: chuva, neon, faixa cheia.",
+  art_rival: "Um entregador rival na mesma rua, um pacote entre vocês.",
+  art_wheelie: "Pôr do sol, pista vazia, roda da frente no ar.",
+  art_station: "Início do turno: baú cheio, tanque cheio.",
+  art_hop: "Alguns pedidos são retirados sem perguntar.",
+  art_ambulans: "Respeite as regras de trânsito — ou a ambulância chega.",
+  trl_prev: "Trailer anterior", trl_next: "Próximo trailer",
+},
+pt_PT: {
+  art_eye: "Ilustrações",
+  art_h2: "Os cartazes do turno",
+  art_p: "São cartazes promocionais — não imagens do jogo. As capturas reais, tiradas do jogo a correr, estão logo abaixo.",
+  art_rain: "Turno da noite: chuva, néon, faixa cheia.",
+  art_rival: "Um estafeta rival na mesma rua, uma encomenda entre vocês.",
+  art_wheelie: "Pôr do sol, estrada vazia, roda da frente no ar.",
+  art_station: "Início do turno: mala cheia, depósito cheio.",
+  art_hop: "Algumas encomendas são levantadas sem perguntar.",
+  art_ambulans: "Respeita as regras de trânsito — ou vem a ambulância.",
+  trl_prev: "Trailer anterior", trl_next: "Trailer seguinte",
+},
+};
+
+for (const code in T_ART) Object.assign(T[code], T_ART[code]);

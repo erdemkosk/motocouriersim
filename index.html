@@ -121,14 +121,67 @@ a{color:var(--teal);text-decoration:none}
 
 
 /* ------------------------------------------------------------- fragman --- */
+/* İki fragman tek şeritte: biri bitince şerit sağa kayıp diğerini açıyor. */
 .trailer{padding:84px 24px;border-bottom:1px solid var(--line);text-align:center}
 .trailer h2{margin:0 0 30px;font-size:clamp(28px,4vw,44px);font-weight:900;letter-spacing:-.02em;color:var(--cream)}
-.trailer .frame{
-  max-width:1040px;margin:0 auto;border-radius:16px;overflow:hidden;
+.tshow{
+  position:relative;max-width:1040px;margin:0 auto;border-radius:16px;overflow:hidden;
   border:1px solid var(--line);box-shadow:0 34px 90px -40px rgba(0,0,0,.95);
   background:#000;
 }
-.trailer video{display:block;width:100%;aspect-ratio:16/9}
+.ttrack{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1)}
+.tslide{flex:0 0 100%;min-width:0}
+.tslide video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+.tnav{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+  width:44px;height:44px;padding:0;border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(255,255,255,.22);background:rgba(7,9,11,.62);color:var(--ink);
+  backdrop-filter:blur(6px);transition:background .15s,color .15s,border-color .15s;
+}
+.tnav svg{width:20px;height:20px;fill:currentColor}
+.tnav:hover{background:var(--amber);color:#231400;border-color:transparent}
+.tnav.prev{left:12px}
+.tnav.next{right:12px}
+.tdots{display:flex;gap:9px;justify-content:center;margin-top:22px}
+.tdot{
+  width:9px;height:9px;padding:0;border:0;border-radius:999px;cursor:pointer;
+  background:rgba(255,255,255,.24);transition:background .2s,width .2s;
+}
+.tdot[aria-current="true"]{background:var(--amber);width:26px}
+@media(max-width:560px){.tnav{width:38px;height:38px}.tnav.prev{left:8px}.tnav.next{right:8px}}
+
+/* ------------------------------------------------------------- afişler --- */
+/* Tanıtım afişleri — oyun içi kare DEĞİL; galeriden ayrı dursun diye
+   ayrı bölüm, ayrı başlık ve ilk iki afiş iki kat geniş. */
+.art-sec{padding:90px 0;border-bottom:1px solid var(--line)}
+.art-sec .art-kick{
+  font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);
+  font-weight:800;margin:0 0 10px;text-align:center;
+}
+.art-sec h2{
+  margin:0 0 8px;text-align:center;font-size:clamp(28px,4vw,44px);font-weight:900;
+  letter-spacing:-.02em;color:var(--cream);
+}
+.art-sec .sub{text-align:center;color:var(--ink-dim);margin:0 auto 40px;max-width:660px}
+.art-wall{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.art-wall figure{
+  margin:0;grid-column:span 3;position:relative;border-radius:14px;overflow:hidden;
+  cursor:zoom-in;border:1px solid var(--line);background:var(--panel);
+}
+.art-wall figure:nth-child(-n+2){grid-column:span 6}
+.art-wall img{width:100%;aspect-ratio:16/9;object-fit:cover;transition:transform .5s ease}
+.art-wall figure:hover img{transform:scale(1.05)}
+.art-wall figure:hover{border-color:var(--amber)}
+.art-wall figcaption{
+  position:absolute;inset-inline:0;bottom:0;padding:30px 14px 12px;font-size:13.5px;
+  color:#e5edf2;background:linear-gradient(to top,rgba(4,6,8,.9),rgba(4,6,8,0));
+}
+@media(max-width:900px){
+  .art-wall figure{grid-column:span 6}
+  .art-wall figure:nth-child(-n+2){grid-column:span 12}
+}
+@media(max-width:560px){.art-wall figure{grid-column:span 12}}
 
 /* -------------------------------------------------------------- facts --- */
 .facts{background:var(--bg);border-bottom:1px solid var(--line)}
@@ -409,11 +462,23 @@ footer .fsoc svg{width:21px;height:21px;fill:currentColor}
 
 <section class="trailer" id="fragman">
   <h2 data-i18n="trl_h"></h2>
-  <div class="frame reveal">
-    <video controls preload="none" poster="img/trailer_poster.jpg" playsinline>
-      <source src="video/trailer.mp4" type="video/mp4">
-    </video>
+  <div class="tshow reveal">
+    <div class="ttrack" id="ttrack">
+      <div class="tslide">
+        <video controls preload="none" poster="img/trailer1_poster.jpg" playsinline>
+          <source src="video/trailer1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="tslide">
+        <video controls preload="none" poster="img/trailer2_poster.jpg" playsinline>
+          <source src="video/trailer2.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <button class="tnav prev" id="tprev" type="button" data-i18n-label="trl_prev"><svg viewBox="0 0 24 24"><path d="M15.4 4.6 7 12l8.4 7.4 1.3-1.5L10.1 12l6.6-5.9-1.3-1.5z"/></svg></button>
+    <button class="tnav next" id="tnext" type="button" data-i18n-label="trl_next"><svg viewBox="0 0 24 24"><path d="M8.6 4.6 7.3 6.1 13.9 12l-6.6 5.9 1.3 1.5L17 12 8.6 4.6z"/></svg></button>
   </div>
+  <div class="tdots" id="tdots"></div>
 </section>
 
 <div class="facts">
@@ -562,6 +627,24 @@ footer .fsoc svg{width:21px;height:21px;fill:currentColor}
   </div>
 </section>
 
+<!-- Tanıtım afişleri. Galeriden ÖNCE ve ayrı: aşağıdaki kareler oyunun
+     içinden, bunlar değil — ikisi karışmasın. -->
+<section class="art-sec" id="afis">
+  <div class="wrap">
+    <p class="art-kick reveal" data-i18n="art_eye"></p>
+    <h2 class="reveal" data-i18n="art_h2"></h2>
+    <p class="sub reveal" data-i18n="art_p"></p>
+    <div class="art-wall">
+      <figure><img src="img/art/rain.jpg" alt="" loading="lazy"><figcaption data-i18n="art_rain"></figcaption></figure>
+      <figure><img src="img/art/rival.jpg" alt="" loading="lazy"><figcaption data-i18n="art_rival"></figcaption></figure>
+      <figure><img src="img/art/wheelie.jpg" alt="" loading="lazy"><figcaption data-i18n="art_wheelie"></figcaption></figure>
+      <figure><img src="img/art/station.jpg" alt="" loading="lazy"><figcaption data-i18n="art_station"></figcaption></figure>
+      <figure><img src="img/art/hop.jpg" alt="" loading="lazy"><figcaption data-i18n="art_hop"></figcaption></figure>
+      <figure><img src="img/art/ambulans_tr.jpg" alt="" loading="lazy"><figcaption data-i18n="art_ambulans"></figcaption></figure>
+    </div>
+  </div>
+</section>
+
 <section class="gallery-sec" id="galeri">
   <div class="wrap">
     <h2 class="reveal" data-i18n="ga_h2"></h2>
@@ -674,6 +757,12 @@ function applyLang(code) {
   for (const el of document.querySelectorAll("[data-i18n]")) {
     const v = t[el.dataset.i18n];
     if (v !== undefined) el.innerHTML = v;
+  }
+
+  // İçi ikon olan düğmelerin metni aria-label'da duruyor.
+  for (const el of document.querySelectorAll("[data-i18n-label]")) {
+    const v = t[el.dataset.i18nLabel];
+    if (v !== undefined) el.setAttribute("aria-label", v);
   }
 
   for (const id of WISH_IDS) {
@@ -809,6 +898,48 @@ document.querySelectorAll("video[data-clip]").forEach(v => clipObs.observe(v));
 document.querySelectorAll(".mo").forEach(el => io.observe(el));
 
 /* Galeri büyüteci — resim ve klip. */
+/* İki fragman tek şeritte. Oynayan bitince şerit sağa kayıyor ve sıradaki
+   kendiliğinden başlıyor; sonuncudan sonra başa dönüyor. Otomatik geçişteki
+   play() ilk oynatma kullanıcı tıklamasıyla başladığı için tarayıcıda
+   engellenmiyor. */
+const tTrack  = document.getElementById("ttrack");
+const tDots   = document.getElementById("tdots");
+const tSlides = [...tTrack.children];
+const tVids   = tSlides.map(s => s.querySelector("video"));
+let tIndex = 0;
+
+function goTrailer(to, play) {
+  const next = (to + tVids.length) % tVids.length;
+  if (next !== tIndex) {
+    tVids[tIndex].pause();
+    tVids[tIndex].currentTime = 0;
+  }
+  tIndex = next;
+  tTrack.style.transform = `translateX(-${tIndex * 100}%)`;
+  tSlides.forEach((sl, n) => sl.toggleAttribute("inert", n !== tIndex));
+  for (const [n, dot] of [...tDots.children].entries()) {
+    dot.setAttribute("aria-current", String(n === tIndex));
+  }
+  if (play) tVids[tIndex].play().catch(() => {});
+}
+
+tVids.forEach((v, n) => {
+  const dot = document.createElement("button");
+  dot.className = "tdot";
+  dot.type = "button";
+  dot.setAttribute("aria-label", String(n + 1));
+  dot.addEventListener("click", () => goTrailer(n, true));
+  tDots.append(dot);
+
+  // Yalnız GÖRÜNEN fragman bitince ilerlesin: arkada duran bir video
+  // (ör. kullanıcı elle geçtiyse) şeridi oynatmasın.
+  v.addEventListener("ended", () => { if (n === tIndex) goTrailer(n + 1, true); });
+});
+
+document.getElementById("tprev").addEventListener("click", () => goTrailer(tIndex - 1, true));
+document.getElementById("tnext").addEventListener("click", () => goTrailer(tIndex + 1, true));
+goTrailer(0, false);
+
 const lb = document.getElementById("lb");
 const lbImg = document.getElementById("lb-img");
 const lbVid = document.getElementById("lb-vid");
@@ -818,7 +949,7 @@ function closeLb() {
   lbVid.removeAttribute("src");
   lbVid.load();
 }
-for (const fig of document.querySelectorAll(".gallery figure")) {
+for (const fig of document.querySelectorAll(".gallery figure, .art-wall figure")) {
   fig.addEventListener("click", () => {
     lbVid.style.display = "none";
     lbImg.style.display = "block";

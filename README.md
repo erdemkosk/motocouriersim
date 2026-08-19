@@ -17,19 +17,44 @@ Not: `og:image` gibi meta etiketler göreli yol kullanıyor; özel alan adına
 taşırsan da bozulmaz. 40 MB'lık fragman Pages dosya sınırının (100 MB)
 altında.
 
-## Fragman
+## Fragmanlar
 
-`video/trailer.mp4` — kaynak `~/Desktop/test-trailer.mp4`ten sıkıştırıldı
-(235 MB / 19 Mbps → 40 MB / 3.3 Mbps, H.264 CRF 23 + faststart):
+Fragman bölümü iki videoluk bir şerit: `video/trailer1.mp4` (10 sn sinematik,
+sesi yok) ve `video/trailer2.mp4` (55 sn uzun fragman). Oynayan bitince şerit
+sağa kayıp sıradakini kendiliğinden başlatıyor, sonuncudan sonra başa dönüyor;
+oklar ve noktalarla elle de geçilebiliyor. Otomatik geçişteki `play()` ilk
+oynatma kullanıcı tıklamasıyla başladığı için tarayıcı engellemiyor —
+engellense bile `.catch()` yutuyor, oyuncu poster + oynat düğmesi görüyor.
+
+Videolar `preload="none"`; sayfa açılışında inmiyor, tıklayınca başlıyor.
+Posterler `img/trailer1_poster.jpg` ve `img/trailer2_poster.jpg`.
+
+Yeni fragman eklerken H.264 + faststart yeter:
 
 ```bash
-ffmpeg -i ~/Desktop/test-trailer.mp4 -c:v libx264 -crf 23 -preset slow \
-  -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 128k site/video/trailer.mp4
+ffmpeg -i kaynak.mp4 -c:v libx264 -crf 23 -preset slow \
+  -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 128k video/trailerN.mp4
 ```
 
-Poster karesi 42. saniyeden (`img/trailer_poster.jpg`). Video
-`preload="none"` — sayfa açılışında indirilmiyor, tıklayınca başlıyor.
-Yeni fragman gelince aynı komutla sıkıştırıp dosyanın üstüne yaz.
+Şeride üçüncü bir video eklemek için `index.html` içindeki `#ttrack`e bir
+`.tslide` daha koymak yeterli — noktalar, oklar ve sıra JS'te slayt
+sayısından türüyor.
+
+## Afişler
+
+`img/art/*.jpg` — tanıtım afişleri, oyun içi kare DEĞİL. Bu yüzden galeriden
+(`#galeri`, "hepsi oyunun içinden") ayrı bir bölümde (`#afis`) duruyorlar ve
+bölümün alt başlığı bunu açıkça söylüyor; ikisi karışırsa oyuncuya yanlış
+söz vermiş oluruz. İlk iki afiş iki kat geniş, kalan dördü küçük; tıklayınca
+galeriyle aynı büyüteçte açılıyorlar.
+
+Kaynaklar 1365×768 / 1920×1080'den 1600px genişliğe indirildi:
+
+```bash
+ffmpeg -i kaynak.jpg -vf "scale=1600:-2:flags=lanczos" -q:v 4 img/art/ad.jpg
+```
+
+`ambulans_tr.jpg` üzerindeki yazı Türkçe — sekiz dilin hepsinde gösteriliyor.
 
 ## Steam bağlantısı
 
