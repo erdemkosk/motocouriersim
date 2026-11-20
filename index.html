@@ -512,7 +512,7 @@ html.intro-on,html.intro-on body{overflow:hidden}
 }
 html.intro-on .intro{display:flex}
 .intro .glow{
-  position:absolute;inset:0;background:url(img/steam/night_ride.jpg) center/cover no-repeat;
+  position:absolute;inset:0;background:url(img/new/hero.jpg) center/cover no-repeat;
   opacity:.12;filter:blur(26px) saturate(.7);pointer-events:none;
 }
 .intro.out{animation:introOut .75s cubic-bezier(.5,0,.75,0) forwards}
@@ -610,6 +610,109 @@ html.intro-on .intro{display:flex}
   .ph-in,.intro-bar{animation:none}
   .ph-load img{animation:none}
 }
+
+/* ------------------------------------------------- güncelleme rozeti --- */
+.upd-pill{
+  display:inline-flex;align-items:center;gap:10px;margin-top:12px;padding:7px 16px 7px 8px;
+  border-radius:999px;background:rgba(255,176,46,.12);border:1px solid rgba(255,176,46,.45);
+  color:var(--ink);font-size:14px;line-height:1.3;backdrop-filter:blur(6px);
+  animation:rise .9s cubic-bezier(.16,1,.3,1) .4s backwards;transition:border-color .15s,transform .15s;
+}
+.upd-pill:hover{border-color:var(--amber);transform:translateY(-2px);text-decoration:none}
+.upd-pill b{background:var(--amber);color:#231400;border-radius:999px;padding:3px 10px;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+@media(max-width:560px){.upd-pill{font-size:13px;border-radius:18px;text-align:start}}
+
+/* ------------------------------------------------ ortak bölüm başı --- */
+.eyebrow{
+  font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);
+  font-weight:800;margin:0 0 10px;text-align:center;
+}
+.wn h2,.reels-sec h2{
+  margin:0 0 8px;text-align:center;font-size:clamp(30px,4.4vw,50px);font-weight:900;
+  letter-spacing:-.02em;color:var(--cream);line-height:1.08;
+}
+.wn .sub,.reels-sec .sub{text-align:center;color:var(--ink-dim);margin:0 auto 42px;max-width:700px}
+
+/* ------------------------------------------------ demodan bu yana --- */
+/* Döngü duvarı: her kart sessiz bir oyun içi döngü ("GIF"), üstünde başlık.
+   Masaüstünde 4 sütun; iki kart (.big) iki sütun kaplıyor: 2+1+1 / 1+1+2. */
+.wn{padding:96px 0 90px;border-bottom:1px solid var(--line);
+  background:radial-gradient(90% 60% at 50% 0%,rgba(31,211,174,.07),transparent 70%)}
+.wn-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.wn-card{
+  position:relative;display:block;border-radius:16px;overflow:hidden;aspect-ratio:4/3;
+  background:#000;border:1px solid var(--line);color:var(--ink);isolation:isolate;
+  opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1),border-color .2s;
+}
+.wn-card.in{opacity:1;transform:none}
+.wn-card.big{grid-column:span 2;aspect-ratio:auto}
+.wn-card video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;transition:transform .6s ease}
+.wn-card::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(to top,rgba(4,6,8,.94) 0%,rgba(4,6,8,.55) 38%,rgba(4,6,8,0) 66%)}
+.wn-card:hover{border-color:var(--teal);text-decoration:none}
+.wn-card:hover video{transform:scale(1.05)}
+.wn-t{position:absolute;inset-inline:0;bottom:0;padding:18px 18px 16px}
+.wn-t h3{margin:6px 0 4px;font-size:clamp(18px,1.7vw,23px);line-height:1.15;font-weight:900;color:var(--cream);letter-spacing:-.01em}
+.wn-t p{margin:0;font-size:14.5px;line-height:1.45;color:#c7d3db}
+.wn-card:not(.big) .wn-t p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:#03231c;background:var(--teal);border-radius:4px;padding:2px 7px}
+@media(max-width:1000px){.wn-grid{grid-template-columns:repeat(2,1fr)}.wn-card.big{aspect-ratio:2/1}}
+@media(max-width:560px){
+  .wn-grid{grid-template-columns:1fr}
+  .wn-card,.wn-card.big{grid-column:auto;aspect-ratio:16/10}
+}
+
+/* -------------------------------------------- 2x2 döngü duvarı --- */
+.wxwall{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.wxwall .mo{padding:7px}
+.wxwall .mo::before{width:60px;height:18px;top:-9px}
+.wxwall figcaption{
+  position:absolute;inset-inline:7px;bottom:7px;padding:22px 10px 8px;border-radius:0 0 8px 8px;
+  font-size:13px;font-weight:700;color:#eef3f6;background:linear-gradient(to top,rgba(4,6,8,.85),rgba(4,6,8,0));
+  pointer-events:none;
+}
+.feat.flip .wxwall{order:2}
+@media(max-width:860px){.feat.flip .wxwall{order:0}}
+@media(max-width:420px){.wxwall{gap:10px}}
+
+/* ------------------------------------------------------ motor dizisi --- */
+.lineup{max-width:1140px;margin:clamp(60px,8vw,100px) auto 0;text-align:center}
+.lineup h4{margin:0 0 16px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim);font-weight:800}
+.chips{display:flex;flex-wrap:wrap;gap:9px;justify-content:center}
+.chips span{
+  padding:9px 16px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.035);
+  font-size:14.5px;color:#d3dee6;font-weight:600;
+}
+.chips i{font-style:normal;font-size:11px;font-weight:800;color:#03231c;background:var(--teal);border-radius:4px;padding:1px 6px;margin-inline-start:6px}
+
+/* ------------------------------------------------------ dikey şerit --- */
+.reels-sec{padding:96px 0 70px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,#0b1116,var(--bg))}
+.reels{
+  display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  padding:6px max(24px,calc((100vw - 1200px)/2 + 24px)) 18px;scrollbar-width:none;
+}
+.reels::-webkit-scrollbar{display:none}
+.reel{
+  flex:0 0 auto;width:clamp(200px,22vw,270px);aspect-ratio:9/16;margin:0;position:relative;
+  border-radius:22px;overflow:hidden;scroll-snap-align:center;background:#000;
+  border:1px solid var(--line);box-shadow:0 24px 50px -24px rgba(0,0,0,.9);
+}
+.reel video{width:100%;height:100%;object-fit:cover;display:block}
+.reel figcaption{
+  position:absolute;inset-inline:0;bottom:0;padding:40px 14px 14px;font-size:14px;font-weight:700;
+  color:#fff;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,0));
+}
+.reels-nav{display:flex;gap:10px;justify-content:center;margin-top:8px}
+.tnav-s{
+  width:44px;height:44px;padding:0;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(255,255,255,.22);background:rgba(7,9,11,.62);color:var(--ink);transition:background .15s,color .15s;
+}
+.tnav-s svg{width:20px;height:20px;fill:currentColor}
+.tnav-s:hover{background:var(--amber);color:#231400;border-color:transparent}
+
+@media(prefers-reduced-motion:reduce){.wn-card{opacity:1;transform:none;transition:none}}
 </style>
 <script>
 /* Açılış sahnesi sekmenin ilk açılışında oynasın; devinim azaltma açıksa hiç
@@ -685,9 +788,10 @@ html.intro-on .intro{display:flex}
 </nav>
 
 <header class="hero">
-  <div class="bg"><img src="img/steam/night_ride.jpg" alt="" fetchpriority="high"></div>
+  <div class="bg"><img src="img/new/hero.jpg" alt="" fetchpriority="high"></div>
   <img class="hero-logo" src="img/logo.png" alt="Moto Courier Simulator">
   <a class="demo-pill" id="demo-pill" href="#"><i></i><b data-i18n="demo_live"></b><span data-i18n="demo_full"></span></a>
+  <a class="upd-pill" href="#yeni"><b data-i18n="upd_b"></b><span data-i18n="upd_s"></span></a>
   <h1><span data-i18n="hero1"></span> <span data-i18n="hero2"></span><br><em data-i18n="hero3"></em></h1>
   <div class="cta">
     <a class="btn btn-wish" id="demo-hero" href="#"><svg viewBox="0 0 24 24"><path d="M11.98 0C5.68 0 .51 4.86.02 11.04l6.43 2.66c.55-.37 1.2-.59 1.91-.59h.19l2.86-4.14v-.06a4.53 4.53 0 1 1 4.53 4.53h-.11l-4.08 2.91v.16a3.4 3.4 0 0 1-6.72.67L.44 15.27A12 12 0 1 0 11.98 0zM7.54 18.21l-1.47-.61a2.55 2.55 0 0 0 4.65-2.07 2.55 2.55 0 0 0-3.26-1.41l1.53.63a1.88 1.88 0 0 1-1.45 3.47zm11.42-9.3a3.02 3.02 0 1 0-6.03 0 3.02 3.02 0 0 0 6.03 0zm-5.28 0a2.27 2.27 0 1 1 4.54 0 2.27 2.27 0 0 1-4.54 0z"/></svg><span data-i18n="cta_demo"></span></a>
@@ -722,164 +826,259 @@ html.intro-on .intro{display:flex}
 <div class="facts">
   <div class="wrap">
     <div class="grid">
-      <div class="fact"><b>15</b><span data-i18n="f3l"></span></div>
-      <div class="fact"><b>210</b><span data-i18n="fveh_l"></span></div>
+      <div class="fact"><b>12</b><span data-i18n="f_bikes"></span></div>
       <div class="fact"><b>8</b><span data-i18n="fx_weather"></span></div>
-      <div class="fact"><b>22</b><span data-i18n="fx_quests"></span></div>
+      <div class="fact"><b>9</b><span data-i18n="f_hoods"></span></div>
+      <div class="fact"><b>12</b><span data-i18n="f_side"></span></div>
       <div class="fact"><b>4</b><span data-i18n="f4l"></span></div>
       <div class="fact"><b>8</b><span data-i18n="f5l"></span></div>
     </div>
   </div>
 </div>
 
-<!-- Tam ekran panolar: panel başına tek fikir, tek cümle. Arkalarındaki
-     kareler Steam sayfasının ekran görüntüleri (img/steam/). -->
-<section class="panel">
-  <div class="bg"><img src="img/steam/ring_road.jpg" alt="" loading="lazy"></div>
-  <div class="txt reveal">
-    <p class="kick">01</p>
-    <h2 data-i18n="p_city_t"></h2>
-    <p data-i18n="p_city_s"></p>
+<!-- Demodan bu yana: döngü duvarı. Her kart oyunun içinden kesilmiş sessiz
+     bir döngü (video/loops/), yalnız görünürken oynar. -->
+<section class="wn" id="yeni">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="wn_eye"></p>
+    <h2 class="reveal" data-i18n="wn_h2"></h2>
+    <p class="sub reveal" data-i18n="wn_p"></p>
+    <div class="wn-grid">
+      <a class="wn-card big" href="#hava"><video src="video/loops/storm.mp4" poster="video/loops/posters/storm.jpg" muted loop playsinline preload="none" data-clip></video><div class="wn-t"><span class="tag" data-i18n="tag_new"></span><h3 data-i18n="wn_wx_t"></h3><p data-i18n="wn_wx_p"></p></div></a>
+      <a class="wn-card" href="#dunya"><video src="video/loops/villas.mp4" poster="video/loops/posters/villas.jpg" muted loop playsinline preload="none" data-clip></video><div class="wn-t"><span class="tag" data-i18n="tag_new"></span><h3 data-i18n="wn_map_t"></h3><p data-i18n="wn_map_p"></p></div></a>
+      <a class="wn-card" href="#motorlar"><video src="video/loops/volt_charge.mp4" poster="video/loops/posters/volt_charge.jpg" muted loop playsinline preload="none" data-clip></video><div class="wn-t"><span class="tag" data-i18n="tag_new"></span><h3 data-i18n="wn_ev_t"></h3><p data-i18n="wn_ev_p"></p></div></a>
+      <a class="wn-card" href="#motorlar"><video src="video/loops/kobra.mp4" poster="video/loops/posters/kobra.jpg" muted loop playsinline preload="none" data-clip></video><div class="wn-t"><span class="tag" data-i18n="tag_new"></span><h3 data-i18n="wn_bikes_t"></h3><p data-i18n="wn_bikes_p"></p></div></a>
+      <a class="wn-card" href="#motorlar"><video src="video/loops/knee_down.mp4" poster="video/loops/posters/knee_down.jpg" muted loop playsinline preload="none" data-clip></video><div class="wn-t"><span class="tag" data-i18n="tag_new"></span><h3 data-i18n="wn_phys_t"></h3><p data-i18n="wn_phys_p"></p></div></a>
+      <a class="wn-card big" href="#insanlar"><video src="video/loops/fight.mp4" poster="video/loops/posters/fight.jpg" muted loop playsinline preload="none" data-clip></video><div class="wn-t"><span class="tag" data-i18n="tag_new"></span><h3 data-i18n="wn_act_t"></h3><p data-i18n="wn_act_p"></p></div></a>
+      <a class="wn-card" href="#insanlar"><video src="video/loops/faces.mp4" poster="video/loops/posters/faces.jpg" muted loop playsinline preload="none" data-clip></video><div class="wn-t"><span class="tag" data-i18n="tag_new"></span><h3 data-i18n="wn_people_t"></h3><p data-i18n="wn_people_p"></p></div></a>
+      <a class="wn-card" href="#insanlar"><video src="video/loops/sertac.mp4" poster="video/loops/posters/sertac.jpg" muted loop playsinline preload="none" data-clip></video><div class="wn-t"><span class="tag" data-i18n="tag_new"></span><h3 data-i18n="wn_story_t"></h3><p data-i18n="wn_story_p"></p></div></a>
+      <a class="wn-card" href="#dunya"><video src="video/loops/wheelie.mp4" poster="video/loops/posters/wheelie.jpg" muted loop playsinline preload="none" data-clip></video><div class="wn-t"><span class="tag" data-i18n="tag_new"></span><h3 data-i18n="wn_hwy_t"></h3><p data-i18n="wn_hwy_p"></p></div></a>
+      <a class="wn-card" href="#insanlar"><video src="video/loops/theft.mp4" poster="video/loops/posters/theft.jpg" muted loop playsinline preload="none" data-clip></video><div class="wn-t"><span class="tag" data-i18n="tag_new"></span><h3 data-i18n="wn_theft_t"></h3><p data-i18n="wn_theft_p"></p></div></a>
+    </div>
   </div>
 </section>
 
-<section class="panel right">
-  <div class="bg"><img src="img/steam/rain_light.jpg" alt="" loading="lazy"></div>
+<!-- 01 HAVA -->
+<section class="panel" id="hava">
+  <div class="bg"><img src="img/new/p_weather.jpg" alt="" loading="lazy"></div>
   <div class="txt reveal">
-    <p class="kick">02</p>
-    <h2 data-i18n="p_night_t"></h2>
-    <p data-i18n="p_night_s"></p>
+    <p class="kick" data-i18n="p_wx_k"></p>
+    <h2 data-i18n="p_wx_t"></h2>
+    <p data-i18n="p_wx_s"></p>
   </div>
 </section>
 
-<!-- Steam sayfasındaki özellikler 1/3: şehir ve sürüş. Klipler mağaza
-     açıklamasındaki döngüler (video/steam/), metin mağazanın metni. -->
 <section class="feats">
   <article class="feat">
-    <figure class="mo" style="--r:-1.8deg" data-full="video/steam/island.mp4">
-      <video src="video/steam/island.mp4" poster="video/steam/posters/island.jpg" muted loop playsinline preload="metadata" data-clip></video>
-    </figure>
+    <div class="wxwall">
+      <figure class="mo" style="--r:-1.4deg" data-full="video/loops/storm.mp4"><video src="video/loops/storm.mp4" poster="video/loops/posters/storm.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="wx_c_storm"></figcaption></figure>
+      <figure class="mo" style="--r:1.2deg" data-full="video/loops/helmet_rain.mp4"><video src="video/loops/helmet_rain.mp4" poster="video/loops/posters/helmet_rain.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="wx_c_helmet"></figcaption></figure>
+      <figure class="mo" style="--r:1.6deg" data-full="video/loops/snow.mp4"><video src="video/loops/snow.mp4" poster="video/loops/posters/snow.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="wx_c_snow"></figcaption></figure>
+      <figure class="mo" style="--r:-1.2deg" data-full="video/loops/fog.mp4"><video src="video/loops/fog.mp4" poster="video/loops/posters/fog.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="wx_c_fog"></figcaption></figure>
+    </div>
     <div class="ft reveal">
-      <h3 data-i18n="st0_t"></h3>
-      <p data-i18n="st0_p"></p>
+      <h3 data-i18n="wx_t"></h3>
+      <ul><li data-i18n="wx_l1"></li><li data-i18n="wx_l2"></li><li data-i18n="wx_l3"></li><li data-i18n="wx_l4"></li></ul>
+    </div>
+  </article>
+</section>
+
+<!-- Dikey şerit: telefon için çekilmiş gibi 9:16 döngüler. -->
+<section class="reels-sec">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="rl_eye"></p>
+    <h2 class="reveal" data-i18n="rl_h2"></h2>
+    <p class="sub reveal" data-i18n="rl_p"></p>
+  </div>
+  <div class="reels" id="reels">
+    <figure class="reel"><video src="video/reels/snow_night.mp4" poster="video/reels/posters/snow_night.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="rl_snow_night"></figcaption></figure>
+    <figure class="reel"><video src="video/reels/snow_spray.mp4" poster="video/reels/posters/snow_spray.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="rl_snow_spray"></figcaption></figure>
+    <figure class="reel"><video src="video/reels/snow_bike.mp4" poster="video/reels/posters/snow_bike.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="rl_snow_bike"></figcaption></figure>
+    <figure class="reel"><video src="video/reels/snow_crash.mp4" poster="video/reels/posters/snow_crash.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="rl_snow_crash"></figcaption></figure>
+    <figure class="reel"><video src="video/reels/snow_ride.mp4" poster="video/reels/posters/snow_ride.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="rl_snow_ride"></figcaption></figure>
+    <figure class="reel"><video src="video/reels/pov_highway.mp4" poster="video/reels/posters/pov_highway.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="rl_pov_highway"></figcaption></figure>
+  </div>
+  <div class="reels-nav">
+    <button class="tnav-s" id="rl-prev" type="button" data-i18n-label="trl_prev"><svg viewBox="0 0 24 24"><path d="M15.4 4.6 7 12l8.4 7.4 1.3-1.5L10.1 12l6.6-5.9-1.3-1.5z"/></svg></button>
+    <button class="tnav-s" id="rl-next" type="button" data-i18n-label="trl_next"><svg viewBox="0 0 24 24"><path d="M8.6 4.6 7.3 6.1 13.9 12l-6.6 5.9 1.3 1.5L17 12 8.6 4.6z"/></svg></button>
+  </div>
+</section>
+
+<!-- 02 DÜNYA -->
+<section class="panel right" id="dunya">
+  <div class="bg"><img src="img/new/p_world.jpg" alt="" loading="lazy"></div>
+  <div class="txt reveal">
+    <p class="kick" data-i18n="p_w_k"></p>
+    <h2 data-i18n="p_w_t"></h2>
+    <p data-i18n="p_w_s"></p>
+  </div>
+</section>
+
+<section class="feats">
+  <article class="feat">
+    <figure class="mo" style="--r:-1.8deg" data-full="video/loops/malvista.mp4"><video src="video/loops/malvista.mp4" poster="video/loops/posters/malvista.jpg" muted loop playsinline preload="none" data-clip></video></figure>
+    <div class="ft reveal">
+      <h3 data-i18n="w1_t"></h3>
+      <ul><li data-i18n="w1_l1"></li><li data-i18n="w1_l2"></li><li data-i18n="w1_l3"></li><li data-i18n="w1_l4"></li></ul>
     </div>
   </article>
   <article class="feat flip">
-    <figure class="mo" style="--r:2.2deg" data-full="video/steam/city.mp4">
-      <video src="video/steam/city.mp4" poster="video/steam/posters/city.jpg" muted loop playsinline preload="metadata" data-clip></video>
-    </figure>
+    <figure class="mo" style="--r:2deg" data-full="video/loops/favela.mp4"><video src="video/loops/favela.mp4" poster="video/loops/posters/favela.jpg" muted loop playsinline preload="none" data-clip></video></figure>
     <div class="ft reveal">
-      <h3 data-i18n="st3_t"></h3>
-      <ul><li data-i18n="st3_l1"></li><li data-i18n="st3_l2"></li><li data-i18n="st3_l3"></li><li data-i18n="st3_l4"></li></ul>
-    </div>
-  </article>
-  <article class="feat">
-    <figure class="mo" style="--r:-2.4deg" data-full="video/steam/ride.mp4">
-      <video src="video/steam/ride.mp4" poster="video/steam/posters/ride.jpg" muted loop playsinline preload="metadata" data-clip></video>
-    </figure>
-    <div class="ft reveal">
-      <h3 data-i18n="st2_t"></h3>
-      <ul><li data-i18n="st2_l1"></li><li data-i18n="st2_l2"></li><li data-i18n="st2_l3"></li><li data-i18n="st2_l4"></li></ul>
+      <h3 data-i18n="w2_t"></h3>
+      <ul><li data-i18n="w2_l1"></li><li data-i18n="w2_l2"></li><li data-i18n="w2_l3"></li><li data-i18n="w2_l4"></li></ul>
     </div>
   </article>
 </section>
 
-<!-- 03 telefon solda, 04 pazar sağda: telefon karesinde telefon sağ kenarda,
-     sisli motor karesinde motor sol-ortada — yazı ikisinde de boş tarafa
-     düşsün diye sıra değişti. -->
-<section class="panel">
-  <div class="bg"><img src="img/steam/phone_paint.jpg" alt="" loading="lazy"></div>
+<!-- 03 MOTORLAR -->
+<section class="panel" id="motorlar">
+  <div class="bg"><img src="img/new/p_bikes.jpg" alt="" loading="lazy"></div>
   <div class="txt reveal">
-    <p class="kick">03</p>
-    <h2 data-i18n="p_phone_t"></h2>
-    <p data-i18n="p_phone_s"></p>
+    <p class="kick" data-i18n="p_b_k"></p>
+    <h2 data-i18n="p_b_t"></h2>
+    <p data-i18n="p_b_s"></p>
   </div>
 </section>
 
-<section class="panel right">
-  <div class="bg"><img src="img/steam/fog_bike.jpg" alt="" loading="lazy"></div>
-  <div class="txt reveal">
-    <p class="kick">04</p>
-    <h2 data-i18n="p_market_t"></h2>
-    <p data-i18n="p_market_s"></p>
-  </div>
-</section>
-
-<!-- Özellikler 2/3: iş telefonda, motor senin, dükkân senin. -->
 <section class="feats">
-  <article class="feat flip">
-    <figure class="mo" style="--r:2deg" data-full="video/steam/deliver.mp4">
-      <video src="video/steam/deliver.mp4" poster="video/steam/posters/deliver.jpg" muted loop playsinline preload="metadata" data-clip></video>
-    </figure>
-    <div class="ft reveal">
-      <h3 data-i18n="st1_t"></h3>
-      <ul><li data-i18n="st1_l1"></li><li data-i18n="st1_l2"></li><li data-i18n="st1_l3"></li><li data-i18n="st1_l4"></li></ul>
-    </div>
-  </article>
   <article class="feat">
-    <figure class="mo" style="--r:-2.2deg" data-full="video/steam/custom.mp4">
-      <video src="video/steam/custom.mp4" poster="video/steam/posters/custom.jpg" muted loop playsinline preload="metadata" data-clip></video>
-    </figure>
+    <figure class="mo" style="--r:-2deg" data-full="video/loops/volt_charge.mp4"><video src="video/loops/volt_charge.mp4" poster="video/loops/posters/volt_charge.jpg" muted loop playsinline preload="none" data-clip></video></figure>
     <div class="ft reveal">
-      <h3 data-i18n="st6_t"></h3>
-      <ul><li data-i18n="st6_l1"></li><li data-i18n="st6_l2"></li><li data-i18n="st6_l3"></li></ul>
+      <h3 data-i18n="b1_t"></h3>
+      <ul><li data-i18n="b1_l1"></li><li data-i18n="b1_l2"></li><li data-i18n="b1_l3"></li><li data-i18n="b1_l4"></li></ul>
     </div>
   </article>
   <article class="feat flip">
-    <figure class="mo" style="--r:1.6deg" data-full="video/steam/business.mp4">
-      <video src="video/steam/business.mp4" poster="video/steam/posters/business.jpg" muted loop playsinline preload="metadata" data-clip></video>
-    </figure>
+    <div class="wxwall">
+      <figure class="mo" style="--r:1.4deg" data-full="video/loops/knee_down.mp4"><video src="video/loops/knee_down.mp4" poster="video/loops/posters/knee_down.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="cap_knee"></figcaption></figure>
+      <figure class="mo" style="--r:-1.2deg" data-full="video/loops/fps_hands.mp4"><video src="video/loops/fps_hands.mp4" poster="video/loops/posters/fps_hands.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="cap_fps"></figcaption></figure>
+      <figure class="mo" style="--r:-1.6deg" data-full="video/loops/kobra.mp4"><video src="video/loops/kobra.mp4" poster="video/loops/posters/kobra.jpg" muted loop playsinline preload="none" data-clip></video><figcaption>Shindo Kobra 700</figcaption></figure>
+      <figure class="mo" style="--r:1.2deg" data-full="video/loops/ferro.mp4"><video src="video/loops/ferro.mp4" poster="video/loops/posters/ferro.jpg" muted loop playsinline preload="none" data-clip></video><figcaption>Verrani Ferro 1200</figcaption></figure>
+    </div>
     <div class="ft reveal">
-      <h3 data-i18n="st4_t"></h3>
-      <ul><li data-i18n="st4_l1"></li><li data-i18n="st4_l2"></li><li data-i18n="st4_l3"></li></ul>
+      <h3 data-i18n="b2_t"></h3>
+      <ul><li data-i18n="b2_l1"></li><li data-i18n="b2_l2"></li><li data-i18n="b2_l3"></li><li data-i18n="b2_l4"></li></ul>
+    </div>
+  </article>
+  <div class="lineup reveal">
+    <h4 data-i18n="bk_h"></h4>
+    <div class="chips">
+      <span>Corva Volt <i>EV</i></span><span>Corva Vento 110</span><span>Corva Swift 125</span><span>Corva Pacer 125</span><span>Grau GC 125</span><span>Corva Nomad 500</span><span>Shindo Kobra 700</span><span>Shindo Raptor 900</span><span>Kaiser 1000R</span><span>Verrani Ferro 1200</span><span>Kaiser Yunus 1250</span><span>Kaiser Atlas 1250</span><span data-i18n="bk_bicycle"></span>
+    </div>
+  </div>
+</section>
+
+<!-- 04 İNSANLAR, HİKÂYE, AKSİYON -->
+<section class="panel right" id="insanlar">
+  <div class="bg"><img src="img/new/p_people.jpg" alt="" loading="lazy"></div>
+  <div class="txt reveal">
+    <p class="kick" data-i18n="p_p_k"></p>
+    <h2 data-i18n="p_p_t"></h2>
+    <p data-i18n="p_p_s"></p>
+  </div>
+</section>
+
+<section class="feats">
+  <article class="feat">
+    <figure class="mo" style="--r:-1.6deg" data-full="video/loops/sertac.mp4"><video src="video/loops/sertac.mp4" poster="video/loops/posters/sertac.jpg" muted loop playsinline preload="none" data-clip></video></figure>
+    <div class="ft reveal">
+      <h3 data-i18n="p1_t"></h3>
+      <p data-i18n="p1_p"></p>
+      <p data-i18n="p1_p2"></p>
+    </div>
+  </article>
+  <article class="feat flip">
+    <div class="wxwall">
+      <figure class="mo" style="--r:1.4deg" data-full="video/loops/fight.mp4"><video src="video/loops/fight.mp4" poster="video/loops/posters/fight.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="cap_fight"></figcaption></figure>
+      <figure class="mo" style="--r:-1.2deg" data-full="video/loops/basket.mp4"><video src="video/loops/basket.mp4" poster="video/loops/posters/basket.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="cap_basket"></figcaption></figure>
+      <figure class="mo" style="--r:-1.6deg" data-full="video/loops/theft.mp4"><video src="video/loops/theft.mp4" poster="video/loops/posters/theft.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="cap_theft"></figcaption></figure>
+      <figure class="mo" style="--r:1.2deg" data-full="video/loops/knockout.mp4"><video src="video/loops/knockout.mp4" poster="video/loops/posters/knockout.jpg" muted loop playsinline preload="none" data-clip></video><figcaption data-i18n="cap_ko"></figcaption></figure>
+    </div>
+    <div class="ft reveal">
+      <h3 data-i18n="p2_t"></h3>
+      <ul><li data-i18n="p2_l1"></li><li data-i18n="p2_l2"></li><li data-i18n="p2_l3"></li><li data-i18n="p2_l4"></li></ul>
     </div>
   </article>
 </section>
 
-<section class="panel">
-  <div class="bg"><img src="img/steam/night_duo.jpg" alt="" loading="lazy"></div>
+<!-- 05 İŞ -->
+<section class="panel" id="kurye">
+  <div class="bg"><img src="img/new/p_work.jpg" alt="" loading="lazy"></div>
   <div class="txt reveal">
-    <p class="kick">05</p>
-    <h2 data-i18n="p_coop_t"></h2>
-    <p data-i18n="p_coop_s"></p>
+    <p class="kick" data-i18n="p_j_k"></p>
+    <h2 data-i18n="p_j_t"></h2>
+    <p data-i18n="p_j_s"></p>
   </div>
 </section>
 
-<section class="panel right">
-  <div class="bg"><img src="img/steam/beach.jpg" alt="" loading="lazy"></div>
-  <div class="txt reveal">
-    <p class="kick">06</p>
-    <h2 data-i18n="p_pier_t"></h2>
-    <p data-i18n="p_pier_s"></p>
-  </div>
-</section>
-
-<!-- Özellikler 3/3: birlikte sür + hikâye. Hikâyenin mağazada klibi yok;
-     metin kumarhane kapısıyla açıldığı için kumarhane karesi duruyor. -->
 <section class="feats">
   <article class="feat">
-    <figure class="mo" style="--r:-2deg" data-full="video/steam/coop.mp4">
-      <video src="video/steam/coop.mp4" poster="video/steam/posters/coop.jpg" muted loop playsinline preload="metadata" data-clip></video>
-    </figure>
+    <figure class="mo" style="--r:-2deg" data-full="video/loops/work.mp4"><video src="video/loops/work.mp4" poster="video/loops/posters/work.jpg" muted loop playsinline preload="none" data-clip></video></figure>
+    <div class="ft reveal">
+      <h3 data-i18n="j1_t"></h3>
+      <ul><li data-i18n="j1_l1"></li><li data-i18n="j1_l2"></li><li data-i18n="j1_l3"></li><li data-i18n="j1_l4"></li></ul>
+    </div>
+  </article>
+  <article class="feat flip">
+    <figure class="mo" style="--r:2deg" data-full="video/loops/coop.mp4"><video src="video/loops/coop.mp4" poster="video/loops/posters/coop.jpg" muted loop playsinline preload="none" data-clip></video></figure>
     <div class="ft reveal">
       <h3 data-i18n="st5_t"></h3>
       <ul><li data-i18n="st5_l1"></li><li data-i18n="st5_l2"></li><li data-i18n="st5_l3"></li></ul>
     </div>
   </article>
-  <article class="feat flip">
-    <figure class="mo" style="--r:2.4deg">
-      <img src="img/steam/casino.jpg" alt="" loading="lazy">
-    </figure>
-    <div class="ft reveal">
-      <h3 data-i18n="st7_t"></h3>
-      <p data-i18n="st7_p"></p>
-      <p data-i18n="st7_p2"></p>
-    </div>
-  </article>
 </section>
 
-<!-- Tanıtım görselleri (Steam'deki ana görsel). Galeriden ÖNCE ve ayrı:
-     aşağıdaki kareler oyunun içinden, bunlar değil — ikisi karışmasın. -->
+<section class="panel right">
+  <div class="bg"><img src="img/new/p_night.jpg" alt="" loading="lazy"></div>
+  <div class="txt reveal">
+    <p class="kick" data-i18n="p_n_k"></p>
+    <h2 data-i18n="p_n_t"></h2>
+    <p data-i18n="p_n_s"></p>
+  </div>
+</section>
+
+<section class="gallery-sec" id="galeri">
+  <div class="wrap">
+    <h2 class="reveal" data-i18n="ga_h2"></h2>
+    <p class="sub reveal" data-i18n="ga_p"></p>
+    <div class="gallery" id="gallery">
+      <figure><img src="img/new/g_storm.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_storm"></figcaption></figure>
+      <figure><img src="img/new/g_snow.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_snow"></figcaption></figure>
+      <figure><img src="img/new/g_rain.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_rain"></figcaption></figure>
+      <figure><img src="img/new/g_fog.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_fog"></figcaption></figure>
+      <figure><img src="img/new/g_helmet_rain.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_helmet_rain"></figcaption></figure>
+      <figure><img src="img/new/g_night.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_night"></figcaption></figure>
+      <figure><img src="img/new/g_volt_charge.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_volt_charge"></figcaption></figure>
+      <figure><img src="img/new/g_kobra.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_kobra"></figcaption></figure>
+      <figure><img src="img/new/g_sertac.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_sertac"></figcaption></figure>
+      <figure><img src="img/new/g_belora.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_belora"></figcaption></figure>
+      <figure><img src="img/new/g_tincan.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_tincan"></figcaption></figure>
+      <figure class="wide"><img src="img/new/g_city_aerial.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_city_aerial"></figcaption></figure>
+      <figure><img src="img/new/g_slopeton.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_slopeton"></figcaption></figure>
+      <figure><img src="img/new/g_brinewell.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_brinewell"></figcaption></figure>
+      <figure><img src="img/new/g_volt.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_volt"></figcaption></figure>
+      <figure><img src="img/new/g_ferro.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_ferro"></figcaption></figure>
+      <figure><img src="img/new/g_wheelie.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_wheelie"></figcaption></figure>
+      <figure><img src="img/new/g_scooter_wheelie.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_scooter_wheelie"></figcaption></figure>
+      <figure><img src="img/new/g_story_rauf.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_story_rauf"></figcaption></figure>
+      <figure><img src="img/new/g_basket.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_basket"></figcaption></figure>
+      <figure class="wide"><img src="img/new/g_court.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_court"></figcaption></figure>
+      <figure><img src="img/new/g_fight.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_fight"></figcaption></figure>
+      <figure><img src="img/new/g_parry.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_parry"></figcaption></figure>
+      <figure><img src="img/new/g_knockout.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_knockout"></figcaption></figure>
+      <figure><img src="img/new/g_lockpick.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_lockpick"></figcaption></figure>
+      <figure><img src="img/new/g_taxi_door.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_taxi_door"></figcaption></figure>
+      <figure class="wide"><img src="img/new/g_malvista.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_malvista"></figcaption></figure>
+      <figure><img src="img/new/g_city_day.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_city_day"></figcaption></figure>
+      <figure><img src="img/new/g_coop_wash.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_coop_wash"></figcaption></figure>
+      <figure><img src="img/new/g_foam.jpg" alt="" loading="lazy"><figcaption data-i18n="gc_foam"></figcaption></figure>
+    </div>
+    <button class="ga-more" id="ga-more" type="button" aria-controls="gallery" aria-expanded="false"><span data-i18n="ga_more"></span><svg viewBox="0 0 24 24"><path d="M7.4 8.6 12 13.2l4.6-4.6L18 10l-6 6-6-6z"/></svg></button>
+  </div>
+</section>
+
+<!-- Tanıtım görselleri (Steam'deki ana görsel): oyun içi kare değil, galeriden ayrı. -->
 <section class="art-sec" id="afis">
   <div class="wrap">
     <p class="art-kick reveal" data-i18n="art_eye"></p>
@@ -893,42 +1092,10 @@ html.intro-on .intro{display:flex}
   </div>
 </section>
 
-<section class="gallery-sec" id="galeri">
-  <div class="wrap">
-    <h2 class="reveal" data-i18n="ga_h2"></h2>
-    <p class="sub reveal" data-i18n="ga_p"></p>
-    <div class="gallery" id="gallery">
-      <figure><img src="img/steam/night_ride.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_night_ride"></figcaption></figure>
-      <figure><img src="img/steam/ring_road.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_ring_road"></figcaption></figure>
-      <figure><img src="img/steam/doorstep.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_doorstep"></figcaption></figure>
-      <figure><img src="img/steam/rain_light.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_rain_light"></figcaption></figure>
-      <figure><img src="img/steam/courier_hq.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_courier_hq"></figcaption></figure>
-      <figure><img src="img/steam/night_duo.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_night_duo"></figcaption></figure>
-      <figure><img src="img/steam/store.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_store"></figcaption></figure>
-      <figure><img src="img/steam/beach.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_beach"></figcaption></figure>
-      <figure><img src="img/steam/casino.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_casino"></figcaption></figure>
-      <figure class="wide"><img src="img/steam/fog_bike.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_fog_bike"></figcaption></figure>
-      <figure><img src="img/steam/phone_paint.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_phone_paint"></figcaption></figure>
-      <figure><img src="img/steam/checkpoint.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_checkpoint"></figcaption></figure>
-      <figure><img src="img/steam/refuel.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_refuel"></figcaption></figure>
-      <figure><img src="img/steam/breathalyzer.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_breathalyzer"></figcaption></figure>
-      <figure><img src="img/steam/city_night.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_city_night"></figcaption></figure>
-      <figure><img src="img/steam/doorbell.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_doorbell"></figcaption></figure>
-      <figure><img src="img/steam/character.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_character"></figcaption></figure>
-      <figure class="wide"><img src="img/steam/helmet_view.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_helmet_view"></figcaption></figure>
-      <figure><img src="img/steam/roadworks.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_roadworks"></figcaption></figure>
-      <figure><img src="img/steam/city_day.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_city_day"></figcaption></figure>
-      <figure><img src="img/steam/city_haze.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_city_haze"></figcaption></figure>
-      <figure><img src="img/steam/foam_wash.jpg" alt="" loading="lazy"><figcaption data-i18n="ss_foam_wash"></figcaption></figure>
-    </div>
-    <button class="ga-more" id="ga-more" type="button" aria-controls="gallery" aria-expanded="false"><span data-i18n="ga_more"></span><svg viewBox="0 0 24 24"><path d="M7.4 8.6 12 13.2l4.6-4.6L18 10l-6 6-6-6z"/></svg></button>
-  </div>
-</section>
-
 <section class="final" id="steam">
   <!-- Mağazanın açılış klibi: şehir gündüzden geceye. Koyu örtünün altında
        düşük çözünürlük belli olmuyor. -->
-  <div class="bg"><video src="video/steam/daynight.mp4" poster="video/steam/posters/daynight.jpg" muted loop playsinline preload="metadata" data-clip aria-hidden="true"></video></div>
+  <div class="bg"><video src="video/loops/city_night.mp4" poster="video/loops/posters/city_night.jpg" muted loop playsinline preload="metadata" data-clip aria-hidden="true"></video></div>
   <img class="logo" src="img/logo.png" alt="">
   <h2 class="reveal" data-i18n="fin_h"></h2>
   <p class="reveal" data-i18n="fin_p"></p>
@@ -996,6 +1163,7 @@ html.intro-on .intro{display:flex}
 </div>
 
 <script src="i18n.js"></script>
+<script src="i18n_v2.js"></script>
 <script>
 /* ------------------------------------------------------------------------ *
  * STEAM BAĞLANTILARI. İstek listesi düğmeleri tam oyunun sayfasına, demo
@@ -1183,6 +1351,16 @@ document.querySelectorAll("video[data-clip]").forEach(v => clipObs.observe(v));
 
 /* Özellik kartları da beliriş gözlemcisine girsin. */
 document.querySelectorAll(".mo").forEach(el => io.observe(el));
+
+
+/* Demodan bu yana kartları da beliriş gözlemcisine girsin. */
+document.querySelectorAll(".wn-card").forEach((el, n) => { el.style.transitionDelay = (n % 4) * 0.07 + "s"; io.observe(el); });
+
+/* Dikey şerit: oklar bir kart kaydırır. */
+const reels = document.getElementById("reels");
+const reelStep = () => (reels.querySelector(".reel")?.offsetWidth || 260) + 16;
+document.getElementById("rl-prev").addEventListener("click", () => reels.scrollBy({left: -reelStep()}));
+document.getElementById("rl-next").addEventListener("click", () => reels.scrollBy({left: reelStep()}));
 
 /* Galeri: kapalıyken ilk satırlar, düğme hepsini açıp kapatıyor. Etiketin
    anahtarı data-i18n'de değişiyor ki dil değişince doğru metin gelsin. */

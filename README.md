@@ -136,62 +136,78 @@ istisna: Steam'in Almanca sayfası İngilizceye düşüyor, Almanca elle
 çevrildi; mağazanın Fransızcası "vous", sitenin Fransızcası baştan beri
 "tu" — sayfada iki hitap karışmasın diye Fransızca "tu"ya çevrildi.
 
-İstatistik kutusundaki sayıların hepsi mağaza metninden: 15 araç (14 motor
-+ bisiklet), 210 araç trafikte ("210'a kadar benzetimli araç"), 8 hava
-durumu, 22 hikâye görevi, 4 kişilik co-op, 8 dil. Eskiden ölçümden gelen
-"260 araç / 800 yaya / 2,25 km²" kutuları kalktı — mağazada geçmeyen ya da
-mağazayla çelişen sayı sitede durmasın.
+(Eski istatistik kutusu mağaza metnindendi; 2026-11-20'den beri oyunun
+verisinden, bkz. "Metinler".)
 
 ## Sosyal hesaplar
 
 Instagram/YouTube: @motocouriersimulator · X: @MotoCourierGame
 (nav, hero, final ve yapışkan çubukta geçiyor — değişirse hepsini ara).
 
-## Görseller
+## Görseller (büyük güncelleme, 2026-11-20)
 
-Kahraman, panolar, galeri ve özellik kartlarındaki bütün kareler Steam
-sayfasının ekran görüntüleri (`img/steam/`, 22 kare). Eski oturum kareleri
-(`hero.jpg`, `sehir.jpg` …) ve eski klipler (`video/clips/`) kaldırıldı;
-oyunun eski sürümünü gösteriyorlardı.
+Eylül'deki Steam kareleri (`img/steam/`) ve klipleri (`video/steam/`) eski
+karakterleri (gerçekçi karakterlerden önce, 2026-10-23) ve eski şehri
+gösteriyordu; sitede hiçbiri kalmadı, klasörler silindi. Bütün görseller
+oyunun güncel sürümünden, oyunun kendi çekim düzeneğiyle (oyun deposunda
+`tools/trailer/`, Movie Maker) alındı:
 
-Galeri kapalıyken ilk 9 kareyi (tablette 8) gösteriyor; "Tüm kareleri
-göster" 22'sini açıyor. İki kare (`.wide`) masaüstünde iki sütun kaplıyor
-ki 22 kare 8 tam satıra otursun. Büyüteçte oklar ve klavye okları aynı
-duvarın kareleri arasında geziyor.
+- `img/new/hero.jpg`, `p_*.jpg` — kahraman ve tam ekran panolar.
+- `img/new/g_*.jpg` — galeri (30 kare, üçü `.wide`: 33 hücre = 11 tam satır).
+  Kapalıyken ilk 9 kare görünür.
+- `video/loops/*.mp4` — sessiz döngüler (sitedeki "GIF"ler): 960x540,
+  30 fps, H.264 crf 25, ses yok, ~0,4-2 MB. `posters/` ilk görünen kare.
+  Yalnız ekrandayken oynar (`data-clip`), `preload="none"`.
+- `video/reels/*.mp4` — dikey (9:16, 540x960) döngü şeridi: kar ve paket
+  kamerası.
+- `video/intro.mp4` — açılıştaki telefonun klibi (720x1280, 13 sn, oyun
+  sesi): fırtına + şimşek, gece karı, teker savurması, karda kayış.
 
-Pano sırası kareye göre: yazı sol altta ya da sağ altta duruyor, kare de
-ona göre seçildi — telefon karesinde telefon sağ kenarda (03 solda), sisli
-motor karesinde motor sol-ortada (04 sağda).
+GIF yerine MP4: aynı görüntü GIF olarak 10-20 kat ağır ve 256 renge iniyor.
+Döngüler `muted loop playsinline` ile her tarayıcıda GIF gibi davranıyor.
 
-### Oyundan kare almak
+### Çekimler nereden
 
-Sitenin eski kareleri oyun deposundaki `tools/_site_shots.gd` ile çalışan
-oyundan alınmıştı. Mağazaya girmeyen yeni bir kare gerekirse yol hâlâ bu:
+| Döngü / kare | Oyun deposundaki plan |
+|---|---|
+| storm, helmet_rain, snow, fog, kobra, ferro, volt_charge, hero, p_weather, p_bikes, p_night | `tools/trailer/shots/site_vitrin.gd` (bu iş için yazıldı; caddeyi şerit grafiğinden seçer) |
+| villas, malvista, favela, wheelie, sertac | `k_buyuk_guncelleme.gd` (`--size=1920x1080`) |
+| fight, knockout | `dovus_reels.gd` (`--size=1920x1080 --hour=17`) |
+| basket | `basket_reels.gd` |
+| theft, work | `arac_calma.gd` (rec.sh) |
+| city_night (kapanış arka planı), coop | `k_sehir_drone.gd` (gun_gece), `k_coop_eglence.gd` (yıkama) |
+| knee_down, fps_hands, reels | masaüstündeki ham çekimler (`his_ham`, `kar_ham`, `paket_goz_ham5`) |
+
+Kayıt (macOS):
 
 ```bash
-godot --path . --script res://tools/_site_shots.gd
+RES=1920x1080 FPS=60 OUT=~/Desktop/site_ham/v tools/trailer/rec.sh site_vitrin
+EXTRA="--size=1920x1080" tools/trailer/rec_dikey.sh k_buyuk_guncelleme ~/Desktop/site_ham/b.mp4
 ```
 
-Betiğin bildikleri (yeniden türetmeye değmez, hepsi ölçüldü):
+Döngü kesimi:
 
-- **Yükleme perdesi.** `_menu_active` perde daha %99'dayken `true` oluyor.
-  Tek doğru kapı `/root/WorldBoot`'un `is_ready` alanı. Erken çekilen kare
-  perdenin karartma katmanını yakalıyor.
-- **Otomatik yüklemeler `--script` koşusunda global ad DEĞİL** — betik
-  onlardan önce derleniyor. `WorldBoot` düğüm yolundan okunuyor.
-- **Menü katmanı.** `_root.visible = false` yetmiyor; `_enter_menu` menüyü
-  geri açabiliyor. `CanvasLayer`'ın kendisi kapatılıyor.
-- **Binme.** `_mount()` animasyonlu (yaya önce motorun yanına yürüyor);
-  kareler o yürüyüşün ortasında düşüyordu. `teleport_to` sürücüyü koşulsuz
-  seleye oturtuyor — tanıtım karesi için istenen bu.
-- **Yerleşim.** `node_position` ızgarası ölü segmentleri de veriyor ve motor
-  çimenin ortasına düşüyordu; `road_polylines()` yalnız kurulmuş yolları
-  döndürüyor. Merkez yarıçapı sınırı olmadan bütün kareler banliyöde çıkıyor.
-- **Duman.** Işınlanma anında kayma dumanı patlıyor ve motorun altında beyaz
-  bir leke bırakıyor — parçacıklar kare öncesi susturuluyor.
-- **Kare boyutu.** Pencereli kipte istenen boyut ekrana kırpılıyor ve koşudan
-  koşuya değişiyor. Tam ekran her seferinde 3024x1898 veriyor; 16:9 kırpması
-  ve web'e ölçekleme sonradan yapılıyor.
+```bash
+ffmpeg -ss 0 -t 6 -i klip.mkv -an -vf "scale=960:540:flags=lanczos,fps=30" \
+  -c:v libx264 -crf 25 -preset slow -pix_fmt yuv420p -movflags +faststart video/loops/ad.mp4
+```
 
-Saat seçimi `tools/_site_hours.gd` ile ölçüldü (aynı kadraj, 12 saat):
-10–16.5 mavi gök, 17.5–19.0 alacakaranlık, 19.8 sonrası tanıtım için karanlık.
+Bilinenler: sabit koordinatlı eski planlar (`hava.gd`, x = 112,5) şehir
+taşındıktan sonra binaların içine düşüyor; `yagmur_yaris` yeni şehirde cadde
+bulamıyor; gece köprü dronu (`kopru_b`) kapkara; akşam ada dronunda gökte
+beyaz bir dikdörtgen var; paket kamerasının köprü çekiminde siyah bant,
+karda ayak izi çekiminde kare doku lekesi var — bunlar sitede kullanılmadı.
+Aynı anda iki kayıt (`override.cfg`) çakışırsa ikincisi hiç başlamıyor.
+
+## Metinler
+
+Yeni bölümlerin metinleri `i18n_v2.js`'te (`T_V2`, `i18n.js`'ten sonra
+yüklenir, aynı anahtarları ezer). Yer adları oyunla aynı ve çevrilmez:
+San Verano, Calvera County, Bel Oro, Malvista Heights, Slopeton, Brinewell,
+Tincan Row (`scripts/place_names.gd`). Görev/uygulama adları oyunun kendi
+çevirisinden: "Tabela gecesi" → "Sign Night", "Volt Şarj" → "Volt Charge" vb.
+NVIDIA ürün adları (DLSS…) NVIDIA'nın yazılı onayına kadar yazılmaz.
+
+İstatistikler oyunun verisinden: 12 motosiklet + bisiklet
+(`vehicle_catalog.gd`), 8 hava (`weather_system.gd` Weather), 9 Calvera
+County mahallesi, 12 yan hikâye (30 görev), 4 kişilik co-op, 8 dil.
