@@ -211,3 +211,21 @@ NVIDIA ürün adları (DLSS…) NVIDIA'nın yazılı onayına kadar yazılmaz.
 İstatistikler oyunun verisinden: 12 motosiklet + bisiklet
 (`vehicle_catalog.gd`), 8 hava (`weather_system.gd` Weather), 9 Calvera
 County mahallesi, 12 yan hikâye (30 görev), 4 kişilik co-op, 8 dil.
+
+## SEO
+
+Metinler JavaScript ile dolduruluyor; arama motorları ve paylaşım kartları
+boş sayfa görmesin diye İngilizce metin HTML'ye basılı. **`i18n.js` /
+`i18n_v2.js` ya da sayfadaki `data-i18n` öğeleri değişince:**
+
+```bash
+python3 tools/prerender.py
+```
+
+Betik `<head>`'deki `<!--SEO-->` bloğunu (başlık, açıklama, canonical,
+hreflang, Open Graph / Twitter kartı, VideoGame JSON-LD), öğe metinlerini,
+`aria-label`'ları, galeri `alt` metinlerini ve Steam düğmelerinin `href`'ini
+yeniden yazar; tekrar koşmak güvenli. Dil sürümleri `?lang=tr` gibi
+adreslerde (canonical o adrese döner); `sitemap.xml` hepsini listeler,
+`robots.txt` onu gösterir. Google Search Console'a `sitemap.xml` bir kez
+gönderilmeli.

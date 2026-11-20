@@ -10,7 +10,7 @@ const T_V2 = {
 
 /* ------------------------------------------------------------------ tr --- */
 tr: {
-  title: "Moto Courier Simulator — Şehir senin, vardiya senin",
+  title: "Moto Courier Simulator — Açık Dünya Motor Kuryesi Oyunu | Steam'de Ücretsiz Demo",
   desc: "Ada şehri San Verano ve çevresindeki Calvera County'de açık dünya kurye simülasyonu: yağmur, kar ve şimşek, elektrikli motor, gerçekçi insanlar, hikâye ve dört kişilik co-op.",
   upd_b: "Yeni", upd_s: "Kar, şimşek, Calvera County ve elektrikli motor",
   tag_new: "Yeni",
@@ -159,11 +159,12 @@ tr: {
   wn_theft_p: "Maymuncuk, düz kontak ya da şoförü kapıdan çekip almak. Sonrası polisle aranızda.",
   gc_basket: "Sokak basketi: üçlük",
   gc_court: "Sahada seyirci ve skor tabelası",
+  foot_dev: "Godot ile yapıldı",
 },
 
 /* ------------------------------------------------------------------ en --- */
 en: {
-  title: "Moto Courier Simulator — The city is yours, the shift is yours",
+  title: "Moto Courier Simulator — Open-World Motorcycle Courier Game | Free Demo on Steam",
   desc: "Open-world courier sim set in the island city of San Verano and the surrounding Calvera County: rain, snow and lightning, an electric bike, realistic people, a story and four-player co-op.",
   upd_b: "New", upd_s: "Snow, lightning, Calvera County and an electric bike",
   tag_new: "New",
@@ -312,11 +313,12 @@ en: {
   wn_theft_p: "Lockpick it, hot-wire it or drag the driver out. What happens next is between you and the police.",
   gc_basket: "Street basketball: a three",
   gc_court: "A crowd and a scoreboard at the court",
+  foot_dev: "Made with the Godot Engine",
 },
 
 /* ------------------------------------------------------------------ fr --- */
 fr: {
-  title: "Moto Courier Simulator — La ville est à toi, la tournée aussi",
+  title: "Moto Courier Simulator — Jeu de coursier à moto en monde ouvert | Démo gratuite sur Steam",
   desc: "Simulation de coursier en monde ouvert dans la ville insulaire de San Verano et le Calvera County voisin : pluie, neige et orages, moto électrique, personnages réalistes, histoire et coop à quatre.",
   upd_b: "Nouveau", upd_s: "Neige, orages, Calvera County et moto électrique",
   tag_new: "Nouveau",
@@ -465,11 +467,12 @@ fr: {
   wn_theft_p: "Crochète, démarre aux fils ou sors le conducteur. La suite se règle avec la police.",
   gc_basket: "Basket de rue : un panier à trois points",
   gc_court: "Public et tableau d'affichage sur le terrain",
+  foot_dev: "Développé avec Godot",
 },
 
 /* ------------------------------------------------------------------ de --- */
 de: {
-  title: "Moto Courier Simulator — Die Stadt gehört dir, die Schicht auch",
+  title: "Moto Courier Simulator — Open-World-Motorradkurier-Spiel | Kostenlose Demo auf Steam",
   desc: "Open-World-Kuriersimulation in der Inselstadt San Verano und dem umliegenden Calvera County: Regen, Schnee und Gewitter, ein Elektro-Motorrad, realistische Menschen, eine Story und Koop für vier.",
   upd_b: "Neu", upd_s: "Schnee, Gewitter, Calvera County und ein Elektro-Motorrad",
   tag_new: "Neu",
@@ -618,11 +621,12 @@ de: {
   wn_theft_p: "Knacken, kurzschließen oder den Fahrer rausziehen. Der Rest ist Sache zwischen dir und der Polizei.",
   gc_basket: "Streetball: ein Dreier",
   gc_court: "Publikum und Anzeigetafel am Platz",
+  foot_dev: "Mit Godot entwickelt",
 },
 
 /* ------------------------------------------------------------------ it --- */
 it: {
-  title: "Moto Courier Simulator — La città è tua, il turno pure",
+  title: "Moto Courier Simulator — Gioco di corriere in moto open world | Demo gratuita su Steam",
   desc: "Simulatore di corriere open world nella città-isola di San Verano e nella vicina Calvera County: pioggia, neve e fulmini, una moto elettrica, persone realistiche, una storia e co-op a quattro.",
   upd_b: "Novità", upd_s: "Neve, fulmini, Calvera County e una moto elettrica",
   tag_new: "Novità",
@@ -771,11 +775,12 @@ it: {
   wn_theft_p: "Grimaldello, fili o tiri fuori l'autista. Il resto è tra te e la polizia.",
   gc_basket: "Basket di strada: una tripla",
   gc_court: "Pubblico e tabellone sul campo",
+  foot_dev: "Realizzato con Godot",
 },
 
 /* ------------------------------------------------------------------ es --- */
 es: {
-  title: "Moto Courier Simulator — La ciudad es tuya, el turno también",
+  title: "Moto Courier Simulator — Juego de repartidor en moto de mundo abierto | Demo gratis en Steam",
   desc: "Simulador de repartidor de mundo abierto en la ciudad isla de San Verano y el vecino Calvera County: lluvia, nieve y rayos, una moto eléctrica, personas realistas, una historia y cooperativo para cuatro.",
   upd_b: "Nuevo", upd_s: "Nieve, rayos, Calvera County y una moto eléctrica",
   tag_new: "Nuevo",
@@ -924,11 +929,12 @@ es: {
   wn_theft_p: "Ganzúa, puente o sacas al conductor. Lo que sigue es entre tú y la policía.",
   gc_basket: "Básquet callejero: un triple",
   gc_court: "Público y marcador en la cancha",
+  foot_dev: "Hecho con Godot",
 },
 
 /* --------------------------------------------------------------- pt_BR --- */
 pt_BR: {
-  title: "Moto Courier Simulator — A cidade é sua, o turno também",
+  title: "Moto Courier Simulator — Jogo de motoboy em mundo aberto | Demo grátis na Steam",
   desc: "Simulador de entregador em mundo aberto na cidade-ilha de San Verano e no vizinho Calvera County: chuva, neve e raios, uma moto elétrica, pessoas realistas, uma história e cooperativo para quatro.",
   upd_b: "Novo", upd_s: "Neve, raios, Calvera County e uma moto elétrica",
   tag_new: "Novo",
@@ -1077,11 +1083,12 @@ pt_BR: {
   wn_theft_p: "Gazua, ligação direta ou arrancar o motorista. O resto é entre você e a polícia.",
   gc_basket: "Basquete de rua: uma cesta de três",
   gc_court: "Torcida e placar na quadra",
+  foot_dev: "Feito com Godot",
 },
 
 /* --------------------------------------------------------------- pt_PT --- */
 pt_PT: {
-  title: "Moto Courier Simulator — A cidade é tua, o turno também",
+  title: "Moto Courier Simulator — Jogo de estafeta de mota em mundo aberto | Demo grátis no Steam",
   desc: "Simulador de estafeta em mundo aberto na cidade-ilha de San Verano e no vizinho Calvera County: chuva, neve e trovoada, uma mota elétrica, pessoas realistas, uma história e cooperativo a quatro.",
   upd_b: "Novo", upd_s: "Neve, trovoada, Calvera County e uma mota elétrica",
   tag_new: "Novo",
@@ -1230,6 +1237,7 @@ pt_PT: {
   wn_theft_p: "Gazua, ligação direta ou tirar o condutor. O resto fica entre ti e a polícia.",
   gc_basket: "Basquetebol de rua: um triplo",
   gc_court: "Público e marcador no campo",
+  foot_dev: "Feito com Godot",
 },
 };
 
