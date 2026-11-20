@@ -69,9 +69,9 @@ def head_block(en):
                    "https://www.youtube.com/@motocouriersimulator", "https://x.com/MotoCourierGame"],
         "offers": {"@type": "Offer", "name": "Free demo", "price": "0", "priceCurrency": "USD",
                    "availability": "https://schema.org/InStock", "url": DEMO},
-        "trailer": {"@type": "VideoObject", "name": "Moto Courier Simulator — Trailer",
+        "trailer": {"@type": "VideoObject", "name": "Moto Courier Simulator — Official Trailer",
                     "description": desc, "thumbnailUrl": SITE + "img/trailer_poster.jpg",
-                    "contentUrl": SITE + "video/trailer.mp4", "uploadDate": "2026-09-27"},
+                    "contentUrl": SITE + "video/trailer.mp4", "uploadDate": "2026-11-20"},
         "screenshot": [SITE + "img/new/" + n + ".jpg" for n in
                        ("hero", "g_snow", "g_belora", "g_volt_charge", "g_kobra", "g_fight")],
     }

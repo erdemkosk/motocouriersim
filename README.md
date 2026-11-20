@@ -19,23 +19,29 @@ altında.
 
 ## Fragman
 
-Fragman bölümünde tek video var: `video/trailer.mp4` (76 sn, Steam
-sayfasındaki fragmanın kaynağı), posteri `img/trailer_poster.jpg` (17,5.
-saniyedeki dört kurye karesi). Eski fragmanlar (`trailer1`, `trailer2`)
-kaldırıldı. Video `preload="none"`; sayfa açılışında inmiyor, tıklayınca
-başlıyor.
+`video/trailer.mp4` (92 sn) 2026-11-20'de yenilendi: oyunun güncel sürümünden
+"Bir vardiya" fragmanı (oyun deposunda kesme listesi
+`tools/trailer/kurgular/fragman_2026.py`, plan `tools/trailer/senaryolar/fragman_2026_kis.md`).
+Müzik ana menü parçası `night_courier`; oyun sesleri müziğin altında. Yazılar
+İngilizce (Türkçe sürüm `PZ_LANG=tr` ile aynı kurgudan). Poster
+`img/trailer_poster.jpg` (garaj kepengi açılır, 46. sn). Eylül'deki eski
+fragman eski karakterleri gösteriyordu, kaldırıldı.
 
-Kaynak 107 MB geldi — Pages'in 100 MB dosya sınırının üstünde — o yüzden
-yeniden kodlandı (≈43 MB):
+Ana kurgu 1080p60 ve ~290 MB (Steam yüklemesi için); Pages'in 100 MB dosya
+sınırı yüzünden site için yeniden kodlandı (≈40 MB):
 
 ```bash
-ffmpeg -i kaynak.mp4 -c:v libx264 -crf 23 -preset slow -maxrate 6M -bufsize 12M \
-  -pix_fmt yuv420p -movflags +faststart -c:a aac -b:a 128k video/trailer.mp4
+ffmpeg -i fragman_2026.mp4 -c:v libx264 -preset slow -b:v 3300k -maxrate 6M -bufsize 12M \
+  -pix_fmt yuv420p -pass 1 -an -f mp4 /dev/null
+ffmpeg -i fragman_2026.mp4 -c:v libx264 -preset slow -b:v 3300k -maxrate 6M -bufsize 12M \
+  -pix_fmt yuv420p -pass 2 -c:a aac -b:a 160k -movflags +faststart video/trailer.mp4
 ```
 
+Sayfadaki adreslerde `?v=` sürümü var: fragman değişince tarihi güncelle ki
+tarayıcı önbelleği eski videoyu göstermesin. Video `preload="none"`.
+
 Şerit mekanizması duruyor: `#ttrack`e ikinci bir `.tslide` eklenince oklar
-ve noktalar kendiliğinden geri geliyor (tek slaytta JS gizliyor), oynayan
-bitince sıradakine geçiyor. Tek slaytta bitince kendini baştan açmıyor.
+ve noktalar kendiliğinden geri geliyor.
 
 ## Afişler
 
