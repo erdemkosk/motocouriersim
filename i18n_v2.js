@@ -160,6 +160,12 @@ tr: {
   gc_basket: "Sokak basketi: üçlük",
   gc_court: "Sahada seyirci ve skor tabelası",
   foot_dev: "Godot ile yapıldı",
+  wn_ui_t: "Teslimatın her adımı",
+  wn_ui_p: "Siparişi telefondan al, poşeti doğru paketle, kapıda kartla tahsil et.",
+  cap_taxi: "Moto taksi",
+  gc_pack: "Poşeti doğru paketle",
+  gc_pos: "Kapıda kartla ödeme",
+  gc_kitchen: "Mutfak: siparişi kendin hazırla",
 },
 
 /* ------------------------------------------------------------------ en --- */
@@ -314,6 +320,12 @@ en: {
   gc_basket: "Street basketball: a three",
   gc_court: "A crowd and a scoreboard at the court",
   foot_dev: "Made with the Godot Engine",
+  wn_ui_t: "Every step of the delivery",
+  wn_ui_p: "Take the order on your phone, pack the bag right, take card payment at the door.",
+  cap_taxi: "Moto taxi",
+  gc_pack: "Pack the bag right",
+  gc_pos: "Card payment at the door",
+  gc_kitchen: "Kitchen: cook the order yourself",
 },
 
 /* ------------------------------------------------------------------ fr --- */
@@ -468,6 +480,12 @@ fr: {
   gc_basket: "Basket de rue : un panier à trois points",
   gc_court: "Public et tableau d'affichage sur le terrain",
   foot_dev: "Développé avec Godot",
+  wn_ui_t: "Chaque étape de la livraison",
+  wn_ui_p: "Accepte la commande sur ton téléphone, emballe bien le sac, encaisse par carte à la porte.",
+  cap_taxi: "Moto-taxi",
+  gc_pack: "Emballe bien le sac",
+  gc_pos: "Paiement par carte à la porte",
+  gc_kitchen: "Cuisine : prépare la commande toi-même",
 },
 
 /* ------------------------------------------------------------------ de --- */
@@ -622,6 +640,12 @@ de: {
   gc_basket: "Streetball: ein Dreier",
   gc_court: "Publikum und Anzeigetafel am Platz",
   foot_dev: "Mit Godot entwickelt",
+  wn_ui_t: "Jeder Schritt der Lieferung",
+  wn_ui_p: "Bestellung am Handy annehmen, Tüte richtig packen, an der Tür per Karte kassieren.",
+  cap_taxi: "Moto-Taxi",
+  gc_pack: "Die Tüte richtig packen",
+  gc_pos: "Kartenzahlung an der Tür",
+  gc_kitchen: "Küche: Bestellung selbst zubereiten",
 },
 
 /* ------------------------------------------------------------------ it --- */
@@ -776,6 +800,12 @@ it: {
   gc_basket: "Basket di strada: una tripla",
   gc_court: "Pubblico e tabellone sul campo",
   foot_dev: "Realizzato con Godot",
+  wn_ui_t: "Ogni passo della consegna",
+  wn_ui_p: "Accetta l'ordine dal telefono, prepara bene il sacchetto, incassa con la carta alla porta.",
+  cap_taxi: "Moto-taxi",
+  gc_pack: "Prepara bene il sacchetto",
+  gc_pos: "Pagamento con carta alla porta",
+  gc_kitchen: "Cucina: prepara tu l'ordine",
 },
 
 /* ------------------------------------------------------------------ es --- */
@@ -930,6 +960,12 @@ es: {
   gc_basket: "Básquet callejero: un triple",
   gc_court: "Público y marcador en la cancha",
   foot_dev: "Hecho con Godot",
+  wn_ui_t: "Cada paso de la entrega",
+  wn_ui_p: "Toma el pedido en el celular, empaca bien la bolsa y cobra con tarjeta en la puerta.",
+  cap_taxi: "Mototaxi",
+  gc_pack: "Empaca bien la bolsa",
+  gc_pos: "Pago con tarjeta en la puerta",
+  gc_kitchen: "Cocina: prepara tú el pedido",
 },
 
 /* --------------------------------------------------------------- pt_BR --- */
@@ -1084,6 +1120,12 @@ pt_BR: {
   gc_basket: "Basquete de rua: uma cesta de três",
   gc_court: "Torcida e placar na quadra",
   foot_dev: "Feito com Godot",
+  wn_ui_t: "Cada etapa da entrega",
+  wn_ui_p: "Aceite o pedido no celular, monte a sacola certinho e cobre no cartão na porta.",
+  cap_taxi: "Mototáxi",
+  gc_pack: "Monte a sacola certinho",
+  gc_pos: "Pagamento no cartão na porta",
+  gc_kitchen: "Cozinha: prepare o pedido você mesmo",
 },
 
 /* --------------------------------------------------------------- pt_PT --- */
@@ -1238,6 +1280,12 @@ pt_PT: {
   gc_basket: "Basquetebol de rua: um triplo",
   gc_court: "Público e marcador no campo",
   foot_dev: "Feito com Godot",
+  wn_ui_t: "Cada passo da entrega",
+  wn_ui_p: "Aceita a encomenda no telemóvel, arruma bem o saco e cobra com cartão à porta.",
+  cap_taxi: "Mototáxi",
+  gc_pack: "Arruma bem o saco",
+  gc_pos: "Pagamento com cartão à porta",
+  gc_kitchen: "Cozinha: prepara tu a encomenda",
 },
 };
 
