@@ -160,8 +160,8 @@ oyunun güncel sürümünden, oyunun kendi çekim düzeneğiyle (oyun deposunda
   Yalnız ekrandayken oynar (`data-clip`), `preload="none"`.
 - `video/reels/*.mp4` — dikey (9:16, 540x960) döngü şeridi: kar ve paket
   kamerası.
-- `video/intro.mp4` — açılıştaki telefonun klibi (720x1280, 13 sn, oyun
-  sesi): fırtına + şimşek, gece karı, teker savurması, karda kayış.
+- Açılıştaki telefon sahnesi (intro) 2026-11-20'de kaldırıldı; sayfa
+  doğrudan kahramanla açılır.
 
 GIF yerine MP4: aynı görüntü GIF olarak 10-20 kat ağır ve 256 renge iniyor.
 Döngüler `muted loop playsinline` ile her tarayıcıda GIF gibi davranıyor.
